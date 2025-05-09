@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, url_for
+from flask import Blueprint, request, redirect, render_template, url_for
 from website import db
 from website.models import Product
 
@@ -10,12 +10,13 @@ views = Blueprint('views', __name__)
 def home():
     
         if request.method == 'POST': 
+            id = request.form['id']
             product_name = request.form['product_name']
             price = request.form['price']
             stock = request.form['stock']
             manufacturer = request.form['manufacturer']
 
-            new_product = Product(product_name=product_name, price=price, stock=stock, manufacturer=manufacturer)
+            new_product = Product(id=id, product_name=product_name, price=price, stock=stock, manufacturer=manufacturer)
             
             try:
                 db.session.add(new_product)
