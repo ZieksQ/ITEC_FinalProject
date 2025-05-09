@@ -1,5 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template, url_for
 
 app = Flask(__name__)
+
+@app.route('/', methods=['POST', 'GET'])
+def run_app():
+    return render_template('Inventory.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
