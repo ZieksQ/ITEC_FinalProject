@@ -1,10 +1,7 @@
-from flask import Flask, render_template, url_for
+from website import run_app
 
-app = Flask(__name__)
-
-@app.route('/', methods=['POST', 'GET'])
-def run_app():
-    return render_template('Inventory.html')
+app = run_app()
+# This is the main entry point for the Flask application.
 
 if __name__ == '__main__':
     app.run(debug=True)
