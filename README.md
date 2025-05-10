@@ -58,52 +58,22 @@
 
 ###
 
-<div align="center">
-  <img height="50" src="https://tenor.com/view/anime-fern-anger-angry-annoyed-gif-3264208338589798256.gif"  />
-</div>
+<p align="left">Auvryy - Frontend</p>
 
 ###
 
-<p align="center">ZieksQ - Planning???</p>
+<p align="left">ApueXI - Backend</p>
 
 ###
 
-<div align="center">
-  <img height="50" src="https://tenor.com/view/honkai-impact-herrscher-of-sentience-senti-fu-hua-dance-gif-26711165.gif"  />
-</div>
+<p align="left">Zoro - UI/UX</p>
 
 ###
 
-<p align="center">ApueXI - Backend</p>
+<p align="left">Snowden - UI</p>
 
 ###
 
-<div align="center">
-  <img height="50" src="https://tenor.com/view/anime-aaaa-yelling-scream-mad-gif-2566373336159153327.gif"  />
-</div>
-
-###
-
-<p align="center">Auvryy - Frontend</p>
-
-###
-
-<div align="center">
-  <img height="50" src="https://tenor.com/view/react-byuntear-meme-joker-gif-26347845.gif"  />
-</div>
-
-###
-
-<p align="center">Snowden - UI</p>
-
-###
-
-<div align="center">
-  <img height="50" src="https://tenor.com/view/zoro-one-piece-one-piece-roronoa-zoro-gif-11531967915979199532.gif"  />
-</div>
-
-###
-
-<p align="center">Zoro - UI/UX</p>
+<p align="left">ZieksQ - Planning???</p>
 
 ###
