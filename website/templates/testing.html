@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="modal-container">
+        <section class="modal-header">
+            <p>Add Product</p>
+            <button id="close-modal">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </section>
+        <form action="/update/{{ product.id }}" method="POST">
+            <section class="modal-content">
+                <div class="modal-input-container">
+                    <p>Product name:</p>
+                    <input type="text" name="product_name" placeholder="Enter product name">
+                </div>
+                <div class="modal-input-container">
+                    <p>Price:</p>
+                    <input type="number" name="price" placeholder="Enter price" step="0.01">
+                </div>
+                <div class="modal-input-container">
+                    <p>Stock:</p>
+                    <input type="number" name="stock" placeholder="Enter stock quantity">
+                </div>
+                <div class="modal-input-container">
+                    <p>Manufacturer:</p>
+                    <input type="text" name="manufacturer" placeholder="Enter manufacturer name">
+                </div>
+                <div class="modal-input-container">
+                    <p>Category:</p>
+                    <select name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="gpu">Graphics Card (GPU)</option>
+                        <option value="cpu">Processor (CPU)</option>
+                        <option value="motherboard">Motherboard</option>
+                        <option value="ram">Memory (RAM)</option>
+                        <option value="storage">Storage (SSD/HDD)</option>
+                        <option value="psu">Power Supply (PSU)</option>
+                        <option value="case">Computer Case</option>
+                        <option value="cooling">Cooling Solutions</option>
+                        <option value="peripherals">Peripherals</option>
+                        <option value="networking">Networking</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="modal-buttons">
+                    <button id="cancel-button">Cancel</button>
+                    <button type="submit" id="submit-button">Update Product</button>
+                </div>
+            </section>
+        </form>
+    </div>
+</body>
+
+</html>
