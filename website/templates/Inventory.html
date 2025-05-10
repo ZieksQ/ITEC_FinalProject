@@ -161,11 +161,17 @@
                   <td>{{ product.product_name }}</td>
                   <td>{{ product.price }}</td>
                   <td>{{ product.stock }}</td>
+                  <td>{{ product.category }}</td>
                   <td>{{ product.manufacturer }}</td>
-                  <td>testing</td>
+                  <td>{{ product.date_created.date() }}</td>
+                  <td>{{ product.date_updated.date() }}</td>
+                  <td>
+                    <a href="/delete/{{ product.id }}">Delete</a>
+                    <br>
+                    <a href="/update/{{ product.id }}">Update</a>
+                  </td>
                 </tr>
                 {% endfor %}
-                <td>testing</td>
               </table>
             </tbody>
           </table>
@@ -188,23 +194,23 @@
           <section class="modal-content">
             <div class="modal-input-container">
               <p>Product name:</p>
-              <input type="text" name="product_name" placeholder="Enter product name">
+              <input type="text" name="product_name" placeholder="Enter product name" required>
             </div>
             <div class="modal-input-container">
               <p>Price:</p>
-              <input type="number" name="price" placeholder="Enter price" step="0.01">
+              <input type="number" name="price" placeholder="Enter price" step="0.01" required>
             </div>
             <div class="modal-input-container">
               <p>Stock:</p>
-              <input type="number" name="stock" placeholder="Enter stock quantity">
+              <input type="number" name="stock" placeholder="Enter stock quantity" required>
             </div>
             <div class="modal-input-container">
               <p>Manufacturer:</p>
-              <input type="text" name="manufacturer" placeholder="Enter manufacturer name">
+              <input type="text" name="manufacturer" placeholder="Enter manufacturer name" required>
             </div>
             <div class="modal-input-container">
               <p>Category:</p>
-              <select>
+              <select name="category" required>
                 <option value="">Select a category</option>
                 <option value="gpu">Graphics Card (GPU)</option>
                 <option value="cpu">Processor (CPU)</option>
