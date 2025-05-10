@@ -25,6 +25,24 @@
       </div>
       <p>OneDee.com</p>
     </section>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %} {% if category ==
+    'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true" class="close">&times;</span>
+      </button>
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
     <section class="right-section">
       <ul>
         <li><a href="#">About</a></li>
@@ -168,15 +186,25 @@
                   <td>
                     <a href="/delete/{{ product.id }}">Delete</a>
                     <br>
-                    <a href="/update/{{ product.id }}">Update</a>
-                    <br>
-                    <button onclick="showForm({{ product.id }})">Open Form</button>
+                    <!-- <a href="/update/{{ product.id }}">Update</a> -->
+                    <!-- <br> -->
+                    <!-- <button onclick="showForm({{ product.id }})">Update Item</button> -->
+                    <button id="add-item" onclick="showForm({{ product.id }})">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                      </svg>
+                      <p>Update Item/Back</p>
+                    </button>
                     <div id="formContainer-{{ product.id }}" style="display: none;">
                       <form action="/update/{{ product.id }}" method="POST">
-                        <input name="product_name" placeholder="Changed product name">
-                        <input name="price" placeholder="Changed price">
-                        <input name="stock" placeholder="Changed stock">
-                        <input name="manufacturer" placeholder="Changed manufacturer">
+                        <input type="text" name="product_name" placeholder="Changed product name" required>
+                        <br>
+                        <input type="number" name="price" placeholder="Changed price" required>
+                        <br>
+                        <input type="number" name="stock" placeholder="Changed stock" required>
+                        <br>
+                        <input type="text" name="manufacturer" placeholder="Changed manufacturer" required>
                         <p>Category:</p>
                         <select name="category" required>
                           <option value="">Select a category</option>
@@ -192,7 +220,7 @@
                           <option value="networking">Networking</option>
                           <option value="other">Other</option>
                         </select>
-                        <button type="submit">Submit</button>
+                        <button type="submit">Update Product</button>
                       </form>
                     </div>
                   </td>
