@@ -27,6 +27,7 @@ def home():
                 try:
                     db.session.add(new_product)
                     db.session.commit()
+                    flash('Product added successfully!', category='success')
                     return redirect('/')
                 except:
                     return "There was an issue adding your product"
