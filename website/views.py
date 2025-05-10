@@ -55,7 +55,7 @@ def update(id):
         except:
             return "You have failed to update the task"
     else:
-        return render_template('testing.html', task=task)
+        return render_template('Inventory.html', task=task)
     
 
 def format_price(price):

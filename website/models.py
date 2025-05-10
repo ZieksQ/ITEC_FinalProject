@@ -13,3 +13,13 @@ class Product(db.Model):
 
     # def __repr__(self):
     #     return f'<Product {self.product_name}>'
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(30), nullable=False)
+    password1 = db.Column(db.String(20), nullable=False)
+    password2 = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(50), nullable=False)
+
+    # def __repr__(self):
+    #     return f'<User {self.username}>'
