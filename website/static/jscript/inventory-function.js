@@ -1,27 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const sideBarBtn = document.getElementById('side-bar-button');
-  const sideBar = document.getElementById('side-bar');
-  const mainContent = document.getElementById('main-content');
-
-  sideBarBtn.addEventListener('click', sideBarInteract);
-  let isVisible = false;
-  function sideBarInteract() {
-    
-
-    if (isVisible) {
-      sideBarBtn.style.transform = 'rotate(0deg)';
-      sideBar.style.transform = 'translateX(-250px)'; 
-      mainContent.style.transform = 'translateX(0)';
-      isVisible = false;     
-    }
-    else if (!isVisible) {
-      sideBarBtn.style.transform = 'rotate(180deg)';
-      sideBar.style.transform = 'translateX(0)';
-      mainContent.style.transform = 'translateX(250px)';
-      isVisible = true;
-    }
-  }
-});
 
 // Get DOM elements
 const addItemButton = document.getElementById('add-item');
@@ -124,40 +100,40 @@ function editRow(button) {
     showModal();
 }
 
-// Function to handle form submission
-function handleSubmit(event) {
-    event.preventDefault();
+// // Function to handle form submission
+// function handleSubmit(event) {
+//     event.preventDefault();
     
-    const formData = {
-        name: document.querySelector('input[placeholder="Enter product name"]').value,
-        price: document.querySelector('input[placeholder="Enter price"]').value,
-        stock: document.querySelector('input[placeholder="Enter stock quantity"]').value,
-        category: document.querySelector('select').value,
-        manufacturer: document.querySelector('input[placeholder="Enter manufacturer name"]').value
-    };
+//     const formData = {
+//         name: document.querySelector('input[placeholder="Enter product name"]').value,
+//         price: document.querySelector('input[placeholder="Enter price"]').value,
+//         stock: document.querySelector('input[placeholder="Enter stock quantity"]').value,
+//         category: document.querySelector('select').value,
+//         manufacturer: document.querySelector('input[placeholder="Enter manufacturer name"]').value
+//     };
     
-    // Validate form data
-    if (!formData.name || !formData.price || !formData.stock || !formData.category || !formData.manufacturer) {
-        alert('Please fill in all fields');
-        return;
-    }
+//     // Validate form data
+//     if (!formData.name || !formData.price || !formData.stock || !formData.category || !formData.manufacturer) {
+//         alert('Please fill in all fields');
+//         return;
+//     }
     
-    if (isEditMode && currentEditRow) {
-        // Update existing row
-        const cells = currentEditRow.cells;
-        cells[1].textContent = formData.name;
-        cells[2].textContent = formatPrice(formData.price);
-        cells[3].textContent = formData.stock;
-        cells[4].textContent = formData.category;
-        cells[5].textContent = formData.manufacturer;
-        cells[7].textContent = getCurrentDate(); // Update the "Updated Date"
-    } else {
-        // Add new row
-        addTableRow(formData);
-    }
+//     if (isEditMode && currentEditRow) {
+//         // Update existing row
+//         const cells = currentEditRow.cells;
+//         cells[1].textContent = formData.name;
+//         cells[2].textContent = formatPrice(formData.price);
+//         cells[3].textContent = formData.stock;
+//         cells[4].textContent = formData.category;
+//         cells[5].textContent = formData.manufacturer;
+//         cells[7].textContent = getCurrentDate(); // Update the "Updated Date"
+//     } else {
+//         // Add new row
+//         addTableRow(formData);
+//     }
     
-    hideModal();
-}
+//     hideModal();
+// }
 
 // Function to delete row
 function deleteRow(button) {
