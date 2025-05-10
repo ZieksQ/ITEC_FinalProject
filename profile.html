@@ -97,7 +97,7 @@
         </div>
         <div class="main-top-right">
           <div class="user-name-container">
-            <h1 id="user-name">John Doe</h1>
+            <h1 id="user-name-display">John Doe</h1>
             <p id="user-role">Admin</p>
           </div>
           <div class="user-data-container">
@@ -105,22 +105,22 @@
                <p class="user-data-header">User Information:</p>
               <div class="info-container">
                 <p>Employment ID:</p>
-                <p>1234567890</p>
+                <p id="user-employment-display">1234567890</p>
               </div>
               <div class="info-container">
                 <p>Email:</p>
-                <p>johndoe@gmail.com</p>
+                <p id="user-email-display">johndoe@gmail.com</p>
               </div>
             </div>
             <div class="user-details">
               <p class="user-data-header">Account Details</p>
               <div class="info-container">
                 <p>Username:</p>
-                <p>John_Doe</p>
+                <p id="username-display">John_Doe</p>
               </div>
               <div class="info-container">
                 <p>Password:</p>
-                <p>qwerty123</p>
+                <p id="password-display">qwerty123</p>
               </div>
             </div>
           </div>
@@ -131,11 +131,6 @@
           <div class="role-container">
             <div class="role-title">
               <p>Role</p>
-              <button id="role-edit">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                </svg>
-              </button>
             </div>
             <form class="role-form">
               <div class="radio-container">
@@ -150,7 +145,7 @@
                 <input type="radio" name="role" value="stakeholder"> 
                 <p>Stakeholder</p>
               </div>
-               <div class="radio-container">
+              <div class="radio-container">
                 <input type="radio" name="role" value="CEO"> 
                 <p>CEO</p>
               </div>
@@ -163,6 +158,44 @@
         </div>
       </section>
     </main>
-  <script src="static/jscript/script copy.js"></script>
+    <div id="modal-edit-container">
+      <div class="modal-content">
+        <section class="modal-header">
+          <p>Edit Information</p>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </section>
+        <section class="modal-input">
+          <div class="input-container">
+            <p>Name:</p>
+            <input type="text" id="edit-name" placeholder="Enter name">
+          </div>
+          <div class="input-container">
+            <p>Employment ID:</p>
+            <input id="edit-employment-id" type="text" placeholder="Enter employment ID">
+          </div>
+          <div class="input-container">
+            <p>Email:</p>
+            <input id="edit-email" type="text" placeholder="Enter email">
+          </div>
+          <div class="input-container">
+            <p>Username:</p>
+            <input id="edit-username" type="text" placeholder="Enter username">
+          </div>
+          <div class="input-container">
+            <p>Password:</p>
+            <input id="edit-password" type="text" placeholder="Enter password">
+          </div>
+        </section>
+        <section class="modal-buttons">
+          <button id="cancel-edit-button">Cancel</button>
+          <button id="submit-edit-button">Submit</button>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script src="inventory.js"></script>
+  <script src="profile-function.js"></script>
 </body>
 </html>
