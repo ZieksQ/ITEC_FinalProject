@@ -44,10 +44,14 @@ def delete(id):
 @views.route('/update/<int:id>', methods=['GET', 'POST'])
 def update(id):
 
-    task = Product.query.get_or_404(id)
+    product = Product.query.get_or_404(id)
 
     if request.method == 'POST':
-        task.content = request.form['content']
+        product.product_name = request.form['product_name']
+        product.price = request.form['price']
+        product.stock = request.form['stock']
+        product.manufacturer = request.form['manufacturer']
+        product.category = request.form['category']
 
         try:
             db.session.commit()
@@ -55,7 +59,7 @@ def update(id):
         except:
             return "You have failed to update the task"
     else:
-        return render_template('Inventory.html', task=task)
+        return render_template('testing.html', product=product)
     
 
 def format_price(price):

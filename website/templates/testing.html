@@ -20,7 +20,7 @@
                 </svg>
             </button>
         </section>
-        <form action="/" method="POST">
+        <form action="/update/{{ product.id }}" method="POST">
             <section class="modal-content">
                 <div class="modal-input-container">
                     <p>Product name:</p>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="modal-input-container">
                     <p>Category:</p>
-                    <select>
+                    <select name="category" required>
                         <option value="">Select a category</option>
                         <option value="gpu">Graphics Card (GPU)</option>
                         <option value="cpu">Processor (CPU)</option>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="modal-buttons">
                     <button id="cancel-button">Cancel</button>
-                    <button type="submit" id="submit-button">Add Product</button>
+                    <button type="submit" id="submit-button">Update Product</button>
                 </div>
             </section>
         </form>
