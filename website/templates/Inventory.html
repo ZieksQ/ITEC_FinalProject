@@ -169,6 +169,32 @@
                     <a href="/delete/{{ product.id }}">Delete</a>
                     <br>
                     <a href="/update/{{ product.id }}">Update</a>
+                    <br>
+                    <button onclick="showForm({{ product.id }})">Open Form</button>
+                    <div id="formContainer-{{ product.id }}" style="display: none;">
+                      <form action="/update/{{ product.id }}" method="POST">
+                        <input name="product_name" placeholder="Changed product name">
+                        <input name="price" placeholder="Changed price">
+                        <input name="stock" placeholder="Changed stock">
+                        <input name="manufacturer" placeholder="Changed manufacturer">
+                        <p>Category:</p>
+                        <select name="category" required>
+                          <option value="">Select a category</option>
+                          <option value="gpu">Graphics Card (GPU)</option>
+                          <option value="cpu">Processor (CPU)</option>
+                          <option value="motherboard">Motherboard</option>
+                          <option value="ram">Memory (RAM)</option>
+                          <option value="storage">Storage (SSD/HDD)</option>
+                          <option value="psu">Power Supply (PSU)</option>
+                          <option value="case">Computer Case</option>
+                          <option value="cooling">Cooling Solutions</option>
+                          <option value="peripherals">Peripherals</option>
+                          <option value="networking">Networking</option>
+                          <option value="other">Other</option>
+                        </select>
+                        <button type="submit">Submit</button>
+                      </form>
+                    </div>
                   </td>
                 </tr>
                 {% endfor %}
@@ -235,6 +261,16 @@
     </div>
   </div>
   <script src="{{ url_for('static', filename='jscript/script copy.js') }}"></script>
+  <script>
+    function showForm(productId) {
+      const form = document.getElementById('formContainer-' + productId);
+      if (form.style.display === 'none') {
+        form.style.display = 'block';
+      } else {
+        form.style.display = 'none';
+      }
+    }
+  </script>
 </body>
 
 </html>
