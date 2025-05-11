@@ -27,7 +27,7 @@
       </div>
       <p>OneDee.com</p>
     </section>
-    
+
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %} {% if category ==
     'error' %}
@@ -47,7 +47,7 @@
     {% endif %} {% endfor %} {% endif %} {% endwith %}
     <section class="right-section">
       <ul>
-        <li><a href="#">About</a></li>
+        <li><a href="/">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
       <button>
@@ -95,14 +95,16 @@
           </svg>
           <p>Products</p>
         </div>
-        <div class="side-bar-item">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-          </svg>
-          <p>Profile</p>
-        </div>
+        <a href="/profile">
+          <div class="side-bar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+            <p>Profile</p>
+          </div>
+        </a>
         <div class="side-bar-item">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="size-6">
@@ -187,7 +189,7 @@
                   <td>{{ product.date_updated.date() }}</td>
                   <td>
                     <a href="/delete/{{ product.id }}">Delete</a>
-                    
+
                     <br>
                     <!-- <a href="/update/{{ product.id }}">Update</a> -->
                     <!-- <br> -->
@@ -247,7 +249,7 @@
             </svg>
           </button>
         </section>
-        <form action="/" method="POST">
+        <form action="/inventory" method="POST">
           <section class="modal-content">
             <div class="modal-input-container">
               <p>Product name:</p>
