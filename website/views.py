@@ -36,7 +36,7 @@ def add_product():
                     db.session.add(new_product)
                     db.session.commit()
                     flash('Product added successfully!', category='success')
-                    return redirect('/Inventory')
+                    return redirect('/inventory')
                 except:
                     return "There was an issue adding your product"
     else:
@@ -51,7 +51,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/Inventory')
+        return redirect('/inventory')
     except:
         return "There was a problem deleting that task"
     
@@ -69,19 +69,11 @@ def update(id):
 
         try:
             db.session.commit()
-            return redirect('/Inventory')
+            return redirect('/inventory')
         except:
             return "You have failed to update the task"
     else:
         return render_template('testing.html', product=product)
-    
-@views.route('/search', methods=['POST'])
-def search():
-    search_query = request.form.get('search_query')
-    products = Product.query.filter(Product.product_name.contains(search_query)).all()
-    for product in products:
-        product.price = format_price(product.price)
-    return render_template("Inventory.html", products=products)
 
 def format_price(price):
     return f"₱{float(price):,.2f}"
