@@ -89,12 +89,6 @@ def search():
         
     return render_template('search.html', searches=searches)
 
-<<<<<<< HEAD
-@views.route('/sorting', methods=['POST', 'GET'])
-def sort_by_id():
-    sortedproducts = Product.query.order_by(Product.id.desc()).all()
-    return render_template('Inventory.html', sortedproducts=sortedproducts)
-=======
 @views.route('/inventory_sorted_by_the_stock', methods=['POST', 'GET'])
 def sorted_by():
     sort = request.args.get('sort', 'prodcut_name')
@@ -116,7 +110,6 @@ def sorted_by():
         products = Product.query.order_by(columnid.asc()).all()
 
     return render_template('Inventory.html', products=products, order=order, sort=sort)
->>>>>>> 9008a3101b3162bb2590db2488d4d5b9c9d936c2
 
 def format_price(price):
     return f"₱{float(price):,.2f}"
