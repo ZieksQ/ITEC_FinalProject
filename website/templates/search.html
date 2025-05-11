@@ -49,8 +49,8 @@
         {% endif %} {% endfor %} {% endif %} {% endwith %}
         <section class="right-section">
             <ul>
-                <li><a href="/">About</a></li>
-                <li><a href="/inventory">Go back to inventory</a></li>
+                <li><a href="{{ url_for('views.home') }}">About</a></li>
+                <li><a href="{{ url_for('views.add_product') }}">Go back to inventory</a></li>
             </ul>
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@
                     </svg>
                     <p>Products</p>
                 </div>
-                <a href="/profile">
+                <a href="{{ url_for('views.the_profile') }}">
                     <div class="side-bar-item">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="size-6">

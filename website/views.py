@@ -10,7 +10,7 @@ def home():
     return render_template("setting.html")
 
 @views.route('/profile', methods=['POST', 'GET'])    
-def profile():
+def the_profile():
 
     return render_template("profile.html")
         
@@ -88,6 +88,11 @@ def search():
         searches = Product.query.all()
         
     return render_template('search.html', searches=searches)
+
+@views.route('/sorting', methods=['POST', 'GET'])
+def sort_by_id():
+    products = Product.query.order_by(Product.id.asc()).all()
+    return render_template('Inventory.html', products=products)
 
 def format_price(price):
     return f"₱{float(price):,.2f}"
