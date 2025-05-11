@@ -36,7 +36,7 @@ def add_product():
                     db.session.add(new_product)
                     db.session.commit()
                     flash('Product added successfully!', category='success')
-                    return redirect('/Inventory')
+                    return redirect('/inventory')
                 except:
                     return "There was an issue adding your product"
     else:
@@ -51,7 +51,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/Inventory')
+        return redirect('/inventory')
     except:
         return "There was a problem deleting that task"
     
@@ -77,14 +77,14 @@ def update(id):
     
 @views.route('/search', methods=['POST', 'GET'])
 def search():
-    query = request.args.get('search', '')
+    query = request.args.get('search').strip()
     print(query)
 
     if query:
         results = Product.query.filter(Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')).order_by(Product.stock.asc()).limit(100).all()
             
     else:
-        # flash('No product found!', category='error')
+        flash('No product found!', category='error')
         results = []
         
     return render_template('testing.html', results=results)
