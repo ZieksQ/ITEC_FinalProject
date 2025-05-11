@@ -28,7 +28,7 @@ def add_product():
 
             if existing_product:
                 flash('Product already exists!.', category='error')
-                return redirect('/')
+                return redirect('/inventory')
             else:
                 new_product = Product(id=id, product_name=product_name, price=price, stock=stock, manufacturer=manufacturer, category=category)
 
@@ -73,7 +73,7 @@ def update(id):
         except:
             return "You have failed to update the task"
     else:
-        return render_template('testing.html', product=product)
+        return render_template('Inventory.html', product=product)
     
 @views.route('/search', methods=['POST', 'GET'])
 def search():
@@ -91,8 +91,8 @@ def search():
 
 @views.route('/sorting', methods=['POST', 'GET'])
 def sort_by_id():
-    products = Product.query.order_by(Product.id.asc()).all()
-    return render_template('Inventory.html', products=products)
+    sortedproducts = Product.query.order_by(Product.id.desc()).all()
+    return render_template('Inventory.html', sortedproducts=sortedproducts)
 
 def format_price(price):
     return f"₱{float(price):,.2f}"
