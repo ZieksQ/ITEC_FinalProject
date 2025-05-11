@@ -4,11 +4,19 @@ from website.models import Product
 
 views = Blueprint('views', __name__)
 
-
 @views.route('/', methods=['POST', 'GET'])
 def home():
-    
-        if request.method == 'POST': 
+
+    return render_template("setting.html")
+
+@views.route('/profile', methods=['POST', 'GET'])    
+def profile():
+
+    return render_template("profile.html")
+        
+@views.route('/inventory', methods=['POST', 'GET'])
+def add_product():
+    if request.method == 'POST': 
             id = request.form.get('id')
             product_name = request.form['product_name']
             price = request.form['price']
@@ -28,16 +36,14 @@ def home():
                     db.session.add(new_product)
                     db.session.commit()
                     flash('Product added successfully!', category='success')
-                    return redirect('/')
+                    return redirect('/Inventory')
                 except:
                     return "There was an issue adding your product"
-            
-
-        else:
-            products = Product.query.order_by(Product.date_created).all()
-            for product in products:
-                product.price = format_price(product.price)
-            return render_template("Inventory.html", products=products)
+    else:
+        products = Product.query.order_by(Product.date_created).all()
+        for product in products:
+            product.price = format_price(product.price)
+        return render_template("Inventory.html", products=products)
         
 @views.route('/delete/<int:id>')
 def delete(id):
@@ -45,7 +51,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/')
+        return redirect('/Inventory')
     except:
         return "There was a problem deleting that task"
     
@@ -63,7 +69,7 @@ def update(id):
 
         try:
             db.session.commit()
-            return redirect('/')
+            return redirect('/Inventory')
         except:
             return "You have failed to update the task"
     else:
