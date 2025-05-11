@@ -12,6 +12,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='src/base-style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='src/inventory-style.css') }}">
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 
 </head>
 
@@ -135,14 +136,14 @@
                 </div>
                 <div class="main-top-right">
                     <form action="/search" method="GET">
-
                         <div class="search-container">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                             </svg>
-                            <input id="search-input" name="search" type="text" placeholder="Search">
+                            <input id="search-input" name="search" type="text" placeholder="Search" hx-get="/search"
+                                hx-target="#search-results" hx-trigger="keyup changed delay:500ms">
                         </div>
                     </form>
                     <button id="sort-button">
@@ -155,7 +156,7 @@
                     </button>
                 </div>
             </section>
-            <section class="main-bottom">
+            <section class="main-bottom" >
                 <div class="table-container">
                     <table>
                         <thead>
@@ -170,7 +171,7 @@
                                 <th>Updated Date</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="search-results">
                             <!--Table body -->
                             <table>
                                 {% for result in searches %}
@@ -183,12 +184,6 @@
                                     <td>{{ result.manufacturer }}</td>
                                     <td>{{ result.date_created.date() }}</td>
                                     <td>{{ result.date_updated.date() }}</td>
-                                    <td>
-                                        <br>
-                                        <!-- <a href="/update/{{ result.id }}">Update</a> -->
-                                        <!-- <br> -->
-                                        <!-- <button onclick="showForm({{ result.id }})">Update Item</button> -->
-                                    </td>
                                 </tr>
                                 {% endfor %}
                             </table>
