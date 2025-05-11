@@ -1,0 +1,443 @@
+
+
+#main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 10px;
+  padding: 10px;
+  margin-left: 30px;
+  max-width: 2000px;
+  transition: all 0.5s;
+}
+
+.main-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 50px;
+}
+
+.main-top-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+}
+
+.picture-container {
+  background-color: var(--secondary-button-color);
+  width: 320px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50px;
+}
+
+.picture-container svg {
+  width: 80%;
+  height: 80%;
+  fill: var(--primary-button-color);
+  color: var(--primary-button-color)
+}
+
+#upload-picture-button {
+  background-color: var(--secondary-button-color);
+  color: black;
+  font-weight: 500;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+
+}
+
+.main-top-right {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
+  align-items: start;
+  width: 100%;
+  height: 100%;
+}
+
+.user-name-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#user-name-display {
+  font-size: 3rem;
+  color: var(--primary-color);
+}
+
+#user-role {
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+}
+
+.user-data-container {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  column-gap: 30px;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-container p {
+  color: var(--primary-color);
+}
+
+.user-information, .user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-data-header {
+  font-weight: 600;
+  color: var(--primary-button-color);
+}
+
+.main-bottom {
+  display: flex;
+  flex-direction: row;
+  row-gap: 20px;
+  align-items: start;
+  width: 100%;
+}
+
+.main-bottom-left {
+  display: flex;
+  align-items: start;
+}
+
+.role-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  row-gap: 25px;
+  width: 100%;
+  max-width: 800px;
+  padding: 25px;
+  background-color: var(--background-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.role-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+.role-title p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.role-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  padding: 5px 0;
+}
+
+.role-submit {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 2px solid var(--secondary-color);
+}
+
+.role-submit button {
+  padding: 12px 30px;
+  background-color: var(--primary-button-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.role-submit button:hover {
+  background-color: var(--accent-color);
+  opacity: 0.9;
+}
+
+.radio-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 15px;
+  padding: 12px 20px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.radio-container:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-5px);
+}
+
+.radio-container input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2.5px solid var(--primary-color);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.radio-container input[type="radio"]:checked {
+  border-color: var(--primary-color);
+  background-color: white;
+}
+
+.radio-container input[type="radio"]:checked::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+}
+
+.radio-container p {
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+#role-edit {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+#role-edit:hover {
+  background-color: var(--secondary-color);
+}
+
+#role-edit svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--primary-color);
+}
+
+.main-bottom-right {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  column-gap: 10px;
+}
+
+#log-out, #edit-profile {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+#log-out:hover, #edit-profile:hover {
+  opacity: 0.9;
+}
+
+#log-out {
+  background-color: var(--secondary-button-color);
+  color: var(--primary-button-color);
+}
+
+#edit-profile {
+  background-color: var(--primary-button-color);
+  color: var(--white-color);
+}
+
+#modal-edit-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background-color: var(--white-color);
+  width: min(500px, 90%);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: auto;
+}
+
+.modal-header {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.modal-header p {
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  font-weight: 500;
+  color: var(--white-color);
+}
+
+.modal-header svg {
+  width: clamp(20px, 5vw, 30px);
+  height: clamp(20px, 5vw, 30px);
+  cursor: pointer;
+  color: var(--white-color);
+}
+
+.modal-input {
+  background-color: var(--white-color);
+  width: 100%;
+  padding: clamp(15px, 3vw, 20px);
+  display: flex;
+  flex-direction: column;
+  row-gap: clamp(15px, 3vw, 20px);
+  justify-content: start;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-container p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.input-container input {
+  width: 100%;
+  padding: clamp(10px, 2vw, 15px);
+  border: 3px solid var(--secondary-button-color);
+  border-radius: 10px;
+  outline-color: var(--primary-color);
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+.modal-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  column-gap: clamp(10px, 2vw, 15px);
+  width: 100%;
+  padding: clamp(15px, 3vw, 20px);
+  position: sticky;
+  bottom: 0;
+  background-color: var(--white-color);
+}
+
+.modal-buttons button {
+  padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#cancel-edit-button {
+  background-color: var(--white-color);
+  border: 3px solid var(--secondary-button-color);
+  border-radius: 5px;
+  color: var(--primary-color);
+}
+
+#submit-edit-button {
+  background-color: var(--primary-color);
+  border: 3px solid var(--primary-color);
+  color: var(--white-color);
+  border-radius: 5px;
+}
+
+#cancel-edit-button:hover {
+  background-color: var(--secondary-button-color);
+  color: var(--white-color);
+}
+
+#submit-edit-button:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* Media query for very small screens */
+@media screen and (max-width: 360px) {
+  .modal-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .modal-buttons button {
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
