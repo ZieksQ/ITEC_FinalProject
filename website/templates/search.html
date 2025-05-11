@@ -131,7 +131,7 @@
         <main id="main-content">
             <section class="main-top">
                 <div class="main-top-left">
-                    <p>Inventory</p>
+                    <p>Search for an Item</p>
                 </div>
                 <div class="main-top-right">
                     <form action="/search" method="GET">
@@ -153,13 +153,6 @@
                                 d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
                         </svg>
                     </button>
-                    <button id="add-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-                        <p>Add Item</p>
-                    </button>
                 </div>
             </section>
             <section class="main-bottom">
@@ -175,14 +168,14 @@
                                 <th>Manufacturer</th>
                                 <th>Added Date</th>
                                 <th>Updated Date</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <!--Table body -->
                             <table>
-                                {% for result in results %}
+                                {% for result in searches %}
                                 <tr>
+                                    <td>{{ loop.index }}</td>
                                     <td>{{ result.product_name }}</td>
                                     <td>{{ result.price }}</td>
                                     <td>{{ result.stock }}</td>
@@ -191,49 +184,10 @@
                                     <td>{{ result.date_created.date() }}</td>
                                     <td>{{ result.date_updated.date() }}</td>
                                     <td>
-                                        <a href="/delete/{{ result.id }}">Delete</a>
-
                                         <br>
                                         <!-- <a href="/update/{{ result.id }}">Update</a> -->
                                         <!-- <br> -->
                                         <!-- <button onclick="showForm({{ result.id }})">Update Item</button> -->
-                                        <button id="add-item" onclick="showForm('{{ result.id }}')">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="1.5" stroke="currentColor" class="size-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M12 4.5v15m7.5-7.5h-15" />
-                                            </svg>
-                                            <p>Update Item/Back</p>
-                                        </button>
-                                        <div id="formContainer-{{ result.id }}" style="display: none;">
-                                            <form action="/update/{{ result.id }}" method="POST">
-                                                <input type="text" name="product_name"
-                                                    placeholder="Changed product name" required>
-                                                <br>
-                                                <input type="number" name="price" placeholder="Changed price" required>
-                                                <br>
-                                                <input type="number" name="stock" placeholder="Changed stock" required>
-                                                <br>
-                                                <input type="text" name="manufacturer"
-                                                    placeholder="Changed manufacturer" required>
-                                                <p>Category:</p>
-                                                <select name="category" required>
-                                                    <option value="">Select a category</option>
-                                                    <option value="gpu">Graphics Card (GPU)</option>
-                                                    <option value="cpu">Processor (CPU)</option>
-                                                    <option value="motherboard">Motherboard</option>
-                                                    <option value="ram">Memory (RAM)</option>
-                                                    <option value="storage">Storage (SSD/HDD)</option>
-                                                    <option value="psu">Power Supply (PSU)</option>
-                                                    <option value="case">Computer Case</option>
-                                                    <option value="cooling">Cooling Solutions</option>
-                                                    <option value="peripherals">Peripherals</option>
-                                                    <option value="networking">Networking</option>
-                                                    <option value="other">Other</option>
-                                                </select>
-                                                <button type="submit">Update Product</button>
-                                            </form>
-                                        </div>
                                     </td>
                                 </tr>
                                 {% endfor %}

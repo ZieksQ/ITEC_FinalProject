@@ -81,13 +81,13 @@ def search():
     print(query)
 
     if query:
-        results = Product.query.filter(Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')).order_by(Product.stock.asc()).limit(100).all()
-            
+        searches = Product.query.filter(Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')).order_by(Product.id.asc()).limit(100).all()
+
     else:
         flash('No product found!', category='error')
-        results = []
+        searches = Product.query.all()
         
-    return render_template('testing.html', results=results)
+    return render_template('search.html', searches=searches)
     
 
 def format_price(price):
