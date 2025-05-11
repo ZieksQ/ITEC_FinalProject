@@ -159,8 +159,10 @@
       <section class="main-bottom">
         <div class="table-container">
           <table>
-            <thead>
-              <tr>
+            <tbody>
+              <!--Table body -->
+              <table>
+                <tr id="thead">
                 <th>#</th>
                 <th>Name</th>
                 <th>Price (₱)</th>
@@ -170,12 +172,8 @@
                 <th>Added Date</th>
                 <th>Updated Date</th>
                 <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!--Table body -->
-              <table>
-                {% for product in products %}
+                </tr>
+                {% for product in products|sort(attribute='price') %}
                 <tr>
                   <td>{{ loop.index }}</td>
                   <td>{{ product.product_name }}</td>
