@@ -4,11 +4,19 @@ from website.models import Product
 
 views = Blueprint('views', __name__)
 
-
 @views.route('/', methods=['POST', 'GET'])
 def home():
-    
-        if request.method == 'POST': 
+
+    return render_template("setting.html")
+
+@views.route('/profile', methods=['POST', 'GET'])    
+def the_profile():
+
+    return render_template("profile.html")
+        
+@views.route('/inventory', methods=['POST', 'GET'])
+def add_product():
+    if request.method == 'POST': 
             id = request.form.get('id')
             product_name = request.form['product_name']
             price = request.form['price']
@@ -20,7 +28,7 @@ def home():
 
             if existing_product:
                 flash('Product already exists!.', category='error')
-                return redirect('/')
+                return redirect('/inventory')
             else:
                 new_product = Product(id=id, product_name=product_name, price=price, stock=stock, manufacturer=manufacturer, category=category)
 
@@ -28,16 +36,14 @@ def home():
                     db.session.add(new_product)
                     db.session.commit()
                     flash('Product added successfully!', category='success')
-                    return redirect('/')
+                    return redirect('/inventory')
                 except:
                     return "There was an issue adding your product"
-            
-
-        else:
-            products = Product.query.order_by(Product.date_created).all()
-            for product in products:
-                product.price = format_price(product.price)
-            return render_template("Inventory.html", products=products)
+    else:
+        products = Product.query.order_by(Product.date_created).all()
+        for product in products:
+            product.price = format_price(product.price)
+        return render_template("Inventory.html", products=products)
         
 @views.route('/delete/<int:id>')
 def delete(id):
@@ -45,7 +51,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect('/')
+        return redirect('/inventory')
     except:
         return "There was a problem deleting that task"
     
@@ -63,19 +69,47 @@ def update(id):
 
         try:
             db.session.commit()
-            return redirect('/')
+            return redirect('/inventory')
         except:
             return "You have failed to update the task"
     else:
-        return render_template('testing.html', product=product)
+        return render_template('Inventory.html', product=product)
     
-@views.route('/search', methods=['POST'])
+@views.route('/search', methods=['POST', 'GET'])
 def search():
-    search_query = request.form.get('search_query')
-    products = Product.query.filter(Product.product_name.contains(search_query)).all()
-    for product in products:
-        product.price = format_price(product.price)
-    return render_template("Inventory.html", products=products)
+    query = request.args.get('search')
+    print(query)
+
+    if query:
+        searches = Product.query.filter(Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')).order_by(Product.id.asc()).limit(100).all()
+
+    else:
+        flash('No product found!', category='error')
+        searches = Product.query.all()
+        
+    return render_template('search.html', searches=searches)
+
+@views.route('/inventory_sorted_by_the_stock', methods=['POST', 'GET'])
+def sorted_by():
+    sort = request.args.get('sort', 'prodcut_name')
+    order = request.args.get('order', 'asc')
+
+    columnstock = getattr(Product, sort, Product.stock)
+    columnid = getattr(Product, sort, Product.id)
+
+    if order == 'desc_stock':
+        products = Product.query.order_by(columnstock.desc()).all()
+    elif order == 'asc_stock':
+        products = Product.query.order_by(columnstock.asc()).all()
+    elif order == 'desc_price':
+        products = Product.query.order_by(columnid.desc()).all()
+    elif order == 'asc_price':
+        products = Product.query.order_by(columnid.asc()).all()
+    else:
+        products = Product.query.order_by(columnstock.asc()).all()
+        products = Product.query.order_by(columnid.asc()).all()
+
+    return render_template('Inventory.html', products=products, order=order, sort=sort)
 
 def format_price(price):
     return f"₱{float(price):,.2f}"

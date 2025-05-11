@@ -12,6 +12,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='src/base-style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='src/inventory-style.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 
@@ -27,27 +28,26 @@
       </div>
       <p>OneDee.com</p>
     </section>
-    
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %} {% if category ==
     'error' %}
-    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
       {{ message }}
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     {% else %}
-    <div class="alert alert-success alter-dismissable fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
       {{ message }}
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true" class="close">&times;</span>
-      </button>
+      </button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
     </div>
     {% endif %} {% endfor %} {% endif %} {% endwith %}
     <section class="right-section">
       <ul>
-        <li><a href="#">About</a></li>
+        <li><a href="{{ url_for('views.home') }}">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
       <button>
@@ -95,14 +95,16 @@
           </svg>
           <p>Products</p>
         </div>
-        <div class="side-bar-item">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-          </svg>
-          <p>Profile</p>
-        </div>
+        <a href="{{ url_for('views.the_profile') }}">
+          <div class="side-bar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+            <p>Profile</p>
+          </div>
+        </a>
         <div class="side-bar-item">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="size-6">
@@ -131,22 +133,44 @@
           <p>Inventory</p>
         </div>
         <div class="main-top-right">
-          <div class="search-container">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="size-6">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-            </svg>
-            <input id="search-input" type="text" placeholder="Search">
-          </div>
-          <button id="sort-button">
-            <p>Sort by</p>
-            <svg xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-              <path
-                d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
-            </svg>
-          </button>
+          <form action="/search" method="GET">
+            <div class="search-container">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>
+              <input id="search-input" name="search" type="text" placeholder="Search">
+            </div>
+          </form>
+            <button id="sort-button">
+              <p>Sort by</p>
+              <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                <path
+                  d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+              </svg>
+            </button>
+          <th>
+            <a href="{{ url_for('views.sorted_by', sort='sorted_by_the_product', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}">
+              Sorts by the stock
+              {% if order == 'asc_stock' %}
+              ▲
+              {% else %}
+              ▼
+              {% endif %}
+            </a>
+          </th>
+          <th>
+            <a href="{{ url_for('views.sorted_by', sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}">
+              Sorts by the Unique Id
+              {% if order == 'asc' %}
+              ▲
+              {% else %}
+              ▼
+              {% endif %}
+            </a>
+          </th>
           <button id="add-item">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="size-6">
@@ -159,21 +183,23 @@
       <section class="main-bottom">
         <div class="table-container">
           <table>
-            <tbody>
+            <thead>
+              <tr class="thead">
+                <th class="sortedjs" data-column="index" data-order="desc">#</th>
+                <th class="sortedjs" data-column="product_name" data-order="desc">Name</th>
+                <th class="sortedjs" data-column="price" data-order="desc">Price (₱)</th>
+                <th class="sortedjs" data-column="stock" data-order="desc">Stock</th>
+                <th class="sortedjs" data-column="category" data-order="desc">Category</th>
+                <th class="sortedjs" data-column="manufacturer" data-order="desc">Manufacturer</th>
+                <th class="sortedjs" data-column="date_created" data-order="desc">Added Date</th>
+                <th class="sortedjs" data-column="date_updated" data-order="desc">Updated Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
               <!--Table body -->
               <table>
-                <tr id="thead">
-                <th>#</th>
-                <th>Name</th>
-                <th>Price (₱)</th>
-                <th>Stock</th>
-                <th>Category</th>
-                <th>Manufacturer</th>
-                <th>Added Date</th>
-                <th>Updated Date</th>
-                <th>Action</th>
-                </tr>
-                {% for product in products|sort(attribute='price') %}
+                {% for product in products %}
                 <tr>
                   <td>{{ loop.index }}</td>
                   <td>{{ product.product_name }}</td>
@@ -184,13 +210,13 @@
                   <td>{{ product.date_created.date() }}</td>
                   <td>{{ product.date_updated.date() }}</td>
                   <td>
-                    <a href="/delete/{{ product.id }}">Delete</a>
-                    
+                    <a href="{{ url_for('views.delete', id=product.id) }}">Delete</a>
+
                     <br>
                     <!-- <a href="/update/{{ product.id }}">Update</a> -->
                     <!-- <br> -->
                     <!-- <button onclick="showForm({{ product.id }})">Update Item</button> -->
-                    <button id="add-item" onclick="showForm({{ product.id }})">
+                    <button id="add-item" onclick="showForm('{{ product.id }}')">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -245,7 +271,7 @@
             </svg>
           </button>
         </section>
-        <form action="/" method="POST">
+        <form action="/inventory" method="POST">
           <section class="modal-content">
             <div class="modal-input-container">
               <p>Product name:</p>
