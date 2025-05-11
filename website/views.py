@@ -69,19 +69,26 @@ def update(id):
 
         try:
             db.session.commit()
-            return redirect('/Inventory')
+            return redirect('/inventory')
         except:
             return "You have failed to update the task"
     else:
         return render_template('testing.html', product=product)
     
-@views.route('/search', methods=['POST'])
+@views.route('/search', methods=['POST', 'GET'])
 def search():
-    search_query = request.form.get('search_query')
-    products = Product.query.filter(Product.product_name.contains(search_query)).all()
-    for product in products:
-        product.price = format_price(product.price)
-    return render_template("Inventory.html", products=products)
+    query = request.args.get('search', '')
+    print(query)
+
+    if query:
+        results = Product.query.filter(Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')).order_by(Product.stock.asc()).limit(100).all()
+            
+    else:
+        # flash('No product found!', category='error')
+        results = []
+        
+    return render_template('testing.html', results=results)
+    
 
 def format_price(price):
     return f"₱{float(price):,.2f}"
