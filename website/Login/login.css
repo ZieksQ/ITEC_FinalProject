@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #f4f3fb;
+  background: white;
 }
 
 .header {
@@ -86,16 +86,6 @@ body {
   color: #a379e7;
   text-decoration: none;
   font-size: 12px;
-}
-
-.login-box button {
-  background: #a379e7;
-  color: white;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 .divider {
