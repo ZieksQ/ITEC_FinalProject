@@ -70,6 +70,7 @@ body {
   margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  box-sizing: border-box;
 }
 .login-box button {
   background: #a379e7;
