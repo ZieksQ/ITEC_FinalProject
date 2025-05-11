@@ -233,12 +233,16 @@ table {
   min-width: 1000px;
 }
 
-thead {
+#thead {
   background-color: var(--primary-color);
   color: var(--white-color);
 }
 
 th, td {
+  max-width: 250px;
+  white-space: normal;      /* Allow line breaks */
+  word-wrap: break-word;    /* Break long words */
+  overflow-wrap: break-word;
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid var(--secondary-color);

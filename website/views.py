@@ -74,6 +74,24 @@ def update(id):
             return "You have failed to update the task"
     else:
         return render_template('testing.html', product=product)
+<<<<<<< HEAD
+=======
+    
+@views.route('/search', methods=['POST', 'GET'])
+def search():
+    query = request.args.get('search').strip()
+    print(query)
+
+    if query:
+        searches = Product.query.filter(Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')).order_by(Product.id.asc()).limit(100).all()
+
+    else:
+        flash('No product found!', category='error')
+        searches = Product.query.all()
+        
+    return render_template('search.html', searches=searches)
+    
+>>>>>>> 6a54c6a7b5e5d43339d5f32a7862a19d1a097f0d
 
 def format_price(price):
     return f"₱{float(price):,.2f}"
