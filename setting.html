@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="website/static/src/base-style.css">
-  <link rel="stylesheet" href="website/static/src/profile-style.css">
+  <link rel="stylesheet" href="website/static/src/setting-style.css">
 </head>
 <body>
   <!--header-->
@@ -84,119 +84,9 @@
     </aside>
     <!--Main content-->
     <main id="main-content">
-      <section class="main-top"> 
-        <div class="main-top-left">
-          <div class="picture-container">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-            </svg>
-          </div>
-          <div>
-            <input id="upload-picture" type="file" accept="image/*" style="display: none;">
-            <button id="upload-picture-button" onclick="document.getElementById('upload-picture').click()">Upload File</button>
-          </div>
-        </div>
-        <div class="main-top-right">
-          <div class="user-name-container">
-            <h1 id="user-name-display">John Doe</h1>
-            <p id="user-role">Admin</p>
-          </div>
-          <div class="user-data-container">
-            <div class="user-information">
-               <p class="user-data-header">User Information:</p>
-              <div class="info-container">
-                <p>Employment ID:</p>
-                <p id="user-employment-display">1234567890</p>
-              </div>
-              <div class="info-container">
-                <p>Email:</p>
-                <p id="user-email-display">johndoe@gmail.com</p>
-              </div>
-            </div>
-            <div class="user-details">
-              <p class="user-data-header">Account Details</p>
-              <div class="info-container">
-                <p>Username:</p>
-                <p id="username-display">John_Doe</p>
-              </div>
-              <div class="info-container">
-                <p>Password:</p>
-                <p id="password-display">qwerty123</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="main-bottom">
-        <div class="main-bottom-left">
-          <div class="role-container">
-            <div class="role-title">
-              <p>Role</p>
-            </div>
-            <form class="role-form">
-              <div class="radio-container">
-                <input type="radio" name="role" value="admin"> 
-                <p>Admin</p>
-              </div>
-              <div class="radio-container">
-                <input type="radio" name="role" value="manager"> 
-                <p>Manager</p>
-              </div>
-              <div class="radio-container">
-                <input type="radio" name="role" value="stakeholder"> 
-                <p>Stakeholder</p>
-              </div>
-              <div class="radio-container">
-                <input type="radio" name="role" value="CEO"> 
-                <p>CEO</p>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="main-bottom-right">
-          <button id="log-out">Log out</button>
-          <button id="edit-profile">Edit Profile</button>
-        </div>
-      </section>
+      
     </main>
-    <div id="modal-edit-container">
-      <div class="modal-content">
-        <section class="modal-header">
-          <p>Edit Information</p>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-          </svg>
-        </section>
-        <section class="modal-input">
-          <div class="input-container">
-            <p>Name:</p>
-            <input type="text" id="edit-name" placeholder="Enter name">
-          </div>
-          <div class="input-container">
-            <p>Employment ID:</p>
-            <input id="edit-employment-id" type="text" placeholder="Enter employment ID">
-          </div>
-          <div class="input-container">
-            <p>Email:</p>
-            <input id="edit-email" type="text" placeholder="Enter email">
-          </div>
-          <div class="input-container">
-            <p>Username:</p>
-            <input id="edit-username" type="text" placeholder="Enter username">
-          </div>
-          <div class="input-container">
-            <p>Password:</p>
-            <input id="edit-password" type="text" placeholder="Enter password">
-          </div>
-        </section>
-        <section class="modal-buttons">
-          <button id="cancel-edit-button">Cancel</button>
-          <button id="submit-edit-button">Submit</button>
-        </section>
-      </div>
-    </div>
-  </div>
   <script src="/ITEC_FinalProject/website/static/jscript/base-function.js"></script>
-  <script src="/ITEC_FinalProject/website/static/jscript/profile-function.js"></script>
+  <script src="/ITEC_FinalProject/website/static/jscript/setting-function.js"></script>
 </body>
 </html>
