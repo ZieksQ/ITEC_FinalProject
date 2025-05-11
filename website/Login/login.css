@@ -22,10 +22,6 @@ body {
   background-color: rgba(162, 121, 231, 0.5); 
   z-index: 1;
 }
-.header p {
-  font-size: 16px;
-  color: #e1dfea;
-}
 
 .text-container {
   position: relative;
@@ -41,7 +37,7 @@ body {
   margin-bottom: 10px;
 }
 .subheading {
-  font-size: 20px; 
+  font-size: 18px; 
   font-weight: 500;
   margin-top: 10px;
   color: #f0eaff; 
