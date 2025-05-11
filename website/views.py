@@ -77,7 +77,7 @@ def update(id):
     
 @views.route('/search', methods=['POST', 'GET'])
 def search():
-    query = request.args.get('search').strip()
+    query = request.args.get('search')
     print(query)
 
     if query:
@@ -88,7 +88,6 @@ def search():
         searches = Product.query.all()
         
     return render_template('search.html', searches=searches)
-    
 
 def format_price(price):
     return f"₱{float(price):,.2f}"
