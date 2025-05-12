@@ -3,10 +3,10 @@ from website.models import Product
 
 sorting_product = Blueprint('sorting_product', __name__)
 
-@sorting_product.route('/inventory_sorted_by_the_stock', methods=['POST', 'GET'])
+@sorting_product.route('/inventory_sorted_by_the_stock', methods=['GET'])
 def sorted_by_inventory():
 
-    sort = request.args.get('sort', 'prodcut_name')
+    sort = request.args.get('sort', 'product_name')
     order = request.args.get('order', 'asc')
 
     columnstock = getattr(Product, sort, Product.stock)
@@ -24,15 +24,12 @@ def sorted_by_inventory():
         products = Product.query.order_by(columnstock.asc()).all()
         products = Product.query.order_by(columnid.asc()).all()
 
-    for product in products:
-            product.price = format_price(product.price)
-
-    return render_template('Inventory.html', products=products, order=order, sort=sort)
+    return render_template('Inventory.html', products=products, order=order, sort=sort, format_price=format_price)
 
 @sorting_product.route('/search_sorted_by_the_stock', methods=['POST', 'GET'])
 def sorted_by_search():
 
-    sort = request.args.get('sort', 'prodcut_name')
+    sort = request.args.get('sort', 'product_name')
     order = request.args.get('order', 'asc')
 
     columnstock = getattr(Product, sort, Product.stock)
@@ -47,13 +44,11 @@ def sorted_by_search():
     elif order == 'asc_price':
         searches = Product.query.order_by(columnid.asc()).all()
     else:
-        searches = Product.query.order_by(columnstock.asc()).all()
         searches = Product.query.order_by(columnid.asc()).all()
+        searches = Product.query.order_by(columnstock.asc()).all()
 
-    for product in searches:
-            product.price = format_price(product.price)
+    return render_template('search.html', searches=searches, order=order, sort=sort, format_price=format_price)
 
-    return render_template('search.html', searches=searches, order=order, sort=sort)
 
 def format_price(price):
     return f"₱{float(price):,.2f}"

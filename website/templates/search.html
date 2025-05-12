@@ -155,7 +155,7 @@
                         <a
                             href="{{ url_for('sorting_product.sorted_by_search', sort='sorted_by_the_product', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}">
                             Sorts by the stock
-                            {% if order == 'asc_stock' %}
+                            {% if order == 'desc_stock' %}
                             ▲
                             {% else %}
                             ▼
@@ -166,7 +166,7 @@
                         <a
                             href="{{ url_for('sorting_product.sorted_by_search', sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}">
                             Sorts by the Unique Id
-                            {% if order == 'asc_price' %}
+                            {% if order == 'desc_price' %}
                             ▲
                             {% else %}
                             ▼
@@ -197,7 +197,7 @@
                                 <tr>
                                     <td>{{ loop.index }}</td>
                                     <td>{{ result.product_name }}</td>
-                                    <td>{{ result.price }}</td>
+                                    <td>{{ format_price(result.price) }}</td>
                                     <td>{{ result.stock }}</td>
                                     <td>{{ result.category }}</td>
                                     <td>{{ result.manufacturer }}</td>
