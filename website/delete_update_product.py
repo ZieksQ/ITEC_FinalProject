@@ -45,5 +45,3 @@ def update(id):
 
     else:
         return render_template('Inventory.html', product=product)
-
-    
