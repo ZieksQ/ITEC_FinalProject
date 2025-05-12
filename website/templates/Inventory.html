@@ -133,7 +133,7 @@
           <p>Inventory</p>
         </div>
         <div class="main-top-right">
-          <form action="/search" method="GET">
+          <form action="{{ url_for('views.search') }}" method="GET">
             <div class="search-container">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-6">
@@ -152,7 +152,7 @@
               </svg>
             </button>
           <th>
-            <a href="{{ url_for('views.sorted_by', sort='sorted_by_the_product', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}">
+            <a href="{{ url_for('views.sorted_by_inventory', sort='sorted_by_the_product', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}">
               Sorts by the stock
               {% if order == 'asc_stock' %}
               ▲
@@ -162,9 +162,9 @@
             </a>
           </th>
           <th>
-            <a href="{{ url_for('views.sorted_by', sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}">
+            <a href="{{ url_for('views.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}">
               Sorts by the Unique Id
-              {% if order == 'asc' %}
+              {% if order == 'asc_price' %}
               ▲
               {% else %}
               ▼
@@ -185,14 +185,14 @@
           <table>
             <thead>
               <tr class="thead">
-                <th class="sortedjs" data-column="index" data-order="desc">#</th>
-                <th class="sortedjs" data-column="product_name" data-order="desc">Name</th>
-                <th class="sortedjs" data-column="price" data-order="desc">Price (₱)</th>
-                <th class="sortedjs" data-column="stock" data-order="desc">Stock</th>
-                <th class="sortedjs" data-column="category" data-order="desc">Category</th>
-                <th class="sortedjs" data-column="manufacturer" data-order="desc">Manufacturer</th>
-                <th class="sortedjs" data-column="date_created" data-order="desc">Added Date</th>
-                <th class="sortedjs" data-column="date_updated" data-order="desc">Updated Date</th>
+                <th>#</th>
+                <th>Name</th>
+                <th>Price (₱)</th>
+                <th>Stock</th>
+                <th>Category</th>
+                <th>Manufacturer</th>
+                <th>Added Date</th>
+                <th>Updated Date</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -225,13 +225,13 @@
                     </button>
                     <div id="formContainer-{{ product.id }}" style="display: none;">
                       <form action="/update/{{ product.id }}" method="POST">
-                        <input type="text" name="product_name" placeholder="Changed product name" required>
+                        <input type="text" name="product_name" value="{{ product.product_name }}" required>
                         <br>
-                        <input type="number" name="price" placeholder="Changed price" required>
+                        <input type="number" name="price" value="{{ product.price }}" required>
                         <br>
-                        <input type="number" name="stock" placeholder="Changed stock" required>
+                        <input type="number" name="stock" value="{{ product.stock }}" required>
                         <br>
-                        <input type="text" name="manufacturer" placeholder="Changed manufacturer" required>
+                        <input type="text" name="manufacturer" value="{{ product.manufacturer }}" required>
                         <p>Category:</p>
                         <select name="category" required>
                           <option value="">Select a category</option>
@@ -271,7 +271,7 @@
             </svg>
           </button>
         </section>
-        <form action="/inventory" method="POST">
+        <form action="{{ url_for('views.add_product') }}" method="POST">
           <section class="modal-content">
             <div class="modal-input-container">
               <p>Product name:</p>
