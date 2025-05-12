@@ -48,7 +48,7 @@ function formatPrice(price) {
 function addTableRow(formData) {
     const rowCount = tableBody.children.length + 1;
     const currentDate = getCurrentDate();
-    
+
     const newRow = document.createElement('tr');
     newRow.innerHTML = `
         <td>${rowCount}</td>
@@ -72,7 +72,7 @@ function addTableRow(formData) {
             </button>
         </td>
     `;
-    
+
     tableBody.appendChild(newRow);
 }
 
@@ -80,22 +80,22 @@ function addTableRow(formData) {
 function editRow(button) {
     const row = button.closest('tr');
     const cells = row.cells;
-    
+
     // Set edit mode
     isEditMode = true;
     currentEditRow = row;
-    
+
     // Update modal title and button
     modalTitle.textContent = 'Edit Product';
     submitButton.textContent = 'Save Changes';
-    
+
     // Fill form with current values
     document.querySelector('input[placeholder="Enter product name"]').value = cells[1].textContent;
     document.querySelector('input[placeholder="Enter price"]').value = cells[2].textContent.replace('₱', '').replace(/,/g, '');
     document.querySelector('input[placeholder="Enter stock quantity"]').value = cells[3].textContent;
     document.querySelector('select').value = cells[4].textContent.toLowerCase().replace(/\s+/g, '');
     document.querySelector('input[placeholder="Enter manufacturer name"]').value = cells[5].textContent;
-    
+
     // Show modal
     showModal();
 }
@@ -103,7 +103,7 @@ function editRow(button) {
 // // Function to handle form submission
 // function handleSubmit(event) {
 //     event.preventDefault();
-    
+
 //     const formData = {
 //         name: document.querySelector('input[placeholder="Enter product name"]').value,
 //         price: document.querySelector('input[placeholder="Enter price"]').value,
@@ -111,13 +111,13 @@ function editRow(button) {
 //         category: document.querySelector('select').value,
 //         manufacturer: document.querySelector('input[placeholder="Enter manufacturer name"]').value
 //     };
-    
+
 //     // Validate form data
 //     if (!formData.name || !formData.price || !formData.stock || !formData.category || !formData.manufacturer) {
 //         alert('Please fill in all fields');
 //         return;
 //     }
-    
+
 //     if (isEditMode && currentEditRow) {
 //         // Update existing row
 //         const cells = currentEditRow.cells;
@@ -131,7 +131,7 @@ function editRow(button) {
 //         // Add new row
 //         addTableRow(formData);
 //     }
-    
+
 //     hideModal();
 // }
 
