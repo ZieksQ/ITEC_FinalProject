@@ -40,8 +40,6 @@ def update(id):
             db.session.rollback()
             flash(f'Failed to update product! error:{e}', category='error')
             return render_template('Inventory.html', product=product)
-        finally:
-            db.session.close()
-
+        
     else:
         return render_template('Inventory.html', product=product)

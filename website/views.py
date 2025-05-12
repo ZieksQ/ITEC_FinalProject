@@ -41,8 +41,7 @@ def add_product():
                     db.session.rollback()
                     flash(f'Failed to add product! error:{e}', category='error')
                     return redirect('/inventory')
-                finally:
-                    db.session.close()
+                
     else:
         products = Product.query.order_by(Product.date_created).all()
         return render_template("Inventory.html", products=products, format_price=format_price)
