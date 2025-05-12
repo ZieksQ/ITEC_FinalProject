@@ -153,7 +153,7 @@
                     </button>
                     <th>
                         <a
-                            href="{{ url_for('views.sorted_by_search', sort='sorted_by_the_product', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}">
+                            href="{{ url_for('sorting_product.sorted_by_search', sort='sorted_by_the_product', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}">
                             Sorts by the stock
                             {% if order == 'asc_stock' %}
                             ▲
@@ -164,7 +164,7 @@
                     </th>
                     <th>
                         <a
-                            href="{{ url_for('views.sorted_by_search', sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}">
+                            href="{{ url_for('sorting_product.sorted_by_search', sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}">
                             Sorts by the Unique Id
                             {% if order == 'asc_price' %}
                             ▲

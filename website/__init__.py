@@ -14,8 +14,10 @@ def run_app():
     db.init_app(app)
     
     from .views import views
+    from .sorting_product import sorting_product
     
     app.register_blueprint(views, url_prefix='/')
+    app.register_blueprint(sorting_product, url_prefix='/sorted')
 
     with app.app_context():
         db.create_all()

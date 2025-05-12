@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="homepage-style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='src/homepage-style.css') }}">
 </head>
 <body>
   <!--header section-->
@@ -20,9 +20,9 @@
     </section>
     <section class="header-right">
       <ul>
-        <li><a>About</a></li>
+        <li><a href="https://github.com/ZieksQ/ITEC_FinalProject">About</a></li>
         <li><a>Contacts</a></li>
-        <li><a>Portfolio</a></li>
+        <li><a href="{{ url_for('views.the_profile') }}">Portfolio</a></li>
       </ul>
       <button class="secondary-button">Log in</button>
       <button class="primary-button">Sign up</button>
@@ -34,7 +34,9 @@
       <h1>Efficient Inventory, Smarter Operations</h1>
       <p>Our inventory system offers real-time tracking, smart tools, and seamless updates—making it easier to organize, monitor, and manage your items with confidence.</p>
       <div>
-        <button class="primary-button">Get started now</button>
+        <a href="{{ url_for('views.add_product') }}">
+          <button class="primary-button">Get started now</button>
+        </a>
       </div>
     </section>
     <section class="section-2">
