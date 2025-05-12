@@ -41,6 +41,8 @@ def add_product():
                     db.session.rollback()
                     flash(f'Failed to add product! error:{e}', category='error')
                     return redirect('/inventory')
+                finally:
+                    db.session.close()
     else:
         products = Product.query.order_by(Product.date_created).all()
         return render_template("Inventory.html", products=products, format_price=format_price)
@@ -51,7 +53,9 @@ def search():
     print(query)
 
     if query:
-        searches = Product.query.filter(Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')).order_by(Product.id.asc()).limit(100).all()
+        searches = Product.query.filter(
+            Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')
+            ).order_by(Product.id.asc()).limit(100).all()
 
     else:
         flash('No product found!', category='error')
