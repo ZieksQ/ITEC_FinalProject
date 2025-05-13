@@ -18,11 +18,11 @@ def the_profile():
 def add_product():
     if request.method == 'POST': 
             id = request.form.get('id')
-            product_name = request.form['product_name']
-            price = request.form['price']
-            stock = request.form['stock']
-            manufacturer = request.form['manufacturer']
-            category = request.form['category']
+            product_name = request.form.get('product_name')
+            price = request.form.get('price')
+            stock = request.form.get('stock')
+            manufacturer = request.form.get('manufacturer')
+            category = request.form.get('category')
 
             existing_product = Product.query.filter_by(product_name=product_name).first()
 
@@ -48,12 +48,11 @@ def add_product():
         
 @views.route('/search', methods=['POST', 'GET'])
 def search():
-    query = request.args.get('search')
-    print(query)
+    querry = request.args.get('search', 'Nothing')
 
-    if query:
+    if querry:
         searches = Product.query.filter(
-            Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')
+            Product.product_name.ilike(f'%{querry}%') | Product.manufacturer.ilike(f'%{querry}%') | Product.category.ilike(f'%{querry}%')
             ).order_by(Product.id.asc()).limit(100).all()
 
     else:
@@ -63,4 +62,4 @@ def search():
     return render_template('search.html', searches=searches, format_price=format_price)
 
 def format_price(price):
-    return f"₱{float(price):,}"
+    return f"₱{float(price):,.2f}"

@@ -27,22 +27,16 @@
             </div>
             <p>OneDee.com</p>
         </section>
-
         {% with messages = get_flashed_messages(with_categories=true) %} {% if
-        messages %} {% for category, message in messages %} {% if category ==
-        'error' %}
-        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+        messages %} {% for category, message in messages %} {% if category == 'error' %}
+        <div class="flash-message {{ category }}">
             {{ message }}
-            <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
         {% else %}
-        <div class="alert alert-success alter-dismissable fade show" role="alert">
+        <div class="flash-message {{ category }}">
             {{ message }}
-            <button type="button" class="close" data-dismiss="alert">
-                <span aria-hidden="true" class="close">&times;</span>
-            </button>
+            <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
         {% endif %} {% endfor %} {% endif %} {% endwith %}
         <section class="right-section">
@@ -133,7 +127,7 @@
                     <p>Search for an Item</p>
                 </div>
                 <div class="main-top-right">
-                    <form action="/search" method="GET">
+                    <form action="{{ url_for('views.search') }}" method="GET">
                         <div class="search-container">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="size-6">
@@ -153,7 +147,7 @@
                     </button>
                     <th>
                         <a
-                            href="{{ url_for('sorting_product.sorted_by_search', sort='sorted_by_the_product', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}">
+                            href="{{ url_for('sorting_product.sorted_by_search', querry=querry, sort='sorted_by_the_product', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}">
                             Sorts by the stock
                             {% if order == 'desc_stock' %}
                             ▲
@@ -164,7 +158,7 @@
                     </th>
                     <th>
                         <a
-                            href="{{ url_for('sorting_product.sorted_by_search', sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}">
+                            href="{{ url_for('sorting_product.sorted_by_search', querry=querry, sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}">
                             Sorts by the Unique Id
                             {% if order == 'desc_price' %}
                             ▲
@@ -188,6 +182,7 @@
                                 <th>Manufacturer</th>
                                 <th>Added Date</th>
                                 <th>Updated Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -203,6 +198,51 @@
                                     <td>{{ result.manufacturer }}</td>
                                     <td>{{ result.date_created.date() }}</td>
                                     <td>{{ result.date_updated.date() }}</td>
+                                    <td>
+                                        <a
+                                            href="{{ url_for('delete_update_product.delete_in_search', id=result.id) }}">Delete</a>
+                                        <br>
+                                        <button id="add-item" onclick="showForm('{{ result.id }}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 4.5v15m7.5-7.5h-15" />
+                                            </svg>
+                                            <p>Update Item/Back</p>
+                                        </button>
+                                        <div id="formContainer-{{ result.id }}" style="display: none;">
+                                            <form
+                                                action="{{ url_for('delete_update_product.update_in_search', id=result.id) }}"
+                                                method="POST">
+                                                <input type="text" name="product_name" value="{{ result.product_name }}"
+                                                    required>
+                                                <br>
+                                                <input type="number" name="price" value="{{ result.price }}" required>
+                                                <br>
+                                                <input type="number" name="stock" value="{{ result.stock }}" required>
+                                                <br>
+                                                <input type="text" name="manufacturer" value="{{ result.manufacturer }}"
+                                                    required>
+                                                <p>Category:</p>
+                                                <select name="category" required>
+                                                    <option value="{{ result.category.upper() }}">{{
+                                                        result.category.upper() }}</option>
+                                                    <option value="gpu">Graphics Card (GPU)</option>
+                                                    <option value="cpu">Processor (CPU)</option>
+                                                    <option value="motherboard">Motherboard</option>
+                                                    <option value="ram">Memory (RAM)</option>
+                                                    <option value="storage">Storage (SSD/HDD)</option>
+                                                    <option value="psu">Power Supply (PSU)</option>
+                                                    <option value="case">Computer Case</option>
+                                                    <option value="cooling">Cooling Solutions</option>
+                                                    <option value="peripherals">Peripherals</option>
+                                                    <option value="networking">Networking</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                                <button type="submit">Update Product</button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </table>
@@ -212,60 +252,6 @@
             </section>
         </main>
         <!--Modal section-->
-        <div id="modal">
-            <div id="modal-container">
-                <section class="modal-header">
-                    <p>Add Product</p>
-                    <button id="close-modal">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </section>
-                <form action="/inventory" method="POST">
-                    <section class="modal-content">
-                        <div class="modal-input-container">
-                            <p>Product name:</p>
-                            <input type="text" name="product_name" placeholder="Enter product name" required>
-                        </div>
-                        <div class="modal-input-container">
-                            <p>Price:</p>
-                            <input type="number" name="price" placeholder="Enter price" step="0.01" required>
-                        </div>
-                        <div class="modal-input-container">
-                            <p>Stock:</p>
-                            <input type="number" name="stock" placeholder="Enter stock quantity" required>
-                        </div>
-                        <div class="modal-input-container">
-                            <p>Manufacturer:</p>
-                            <input type="text" name="manufacturer" placeholder="Enter manufacturer name" required>
-                        </div>
-                        <div class="modal-input-container">
-                            <p>Category:</p>
-                            <select name="category" required>
-                                <option value="">Select a category</option>
-                                <option value="gpu">Graphics Card (GPU)</option>
-                                <option value="cpu">Processor (CPU)</option>
-                                <option value="motherboard">Motherboard</option>
-                                <option value="ram">Memory (RAM)</option>
-                                <option value="storage">Storage (SSD/HDD)</option>
-                                <option value="psu">Power Supply (PSU)</option>
-                                <option value="case">Computer Case</option>
-                                <option value="cooling">Cooling Solutions</option>
-                                <option value="peripherals">Peripherals</option>
-                                <option value="networking">Networking</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="modal-buttons">
-                            <button id="cancel-button">Cancel</button>
-                            <button type="submit" id="submit-button">Add Product</button>
-                        </div>
-                    </section>
-                </form>
-            </div>
-        </div>
     </div>
     <script src="{{ url_for('static', filename='jscript/base-function.js') }}"></script>
     <script src="{{ url_for('static', filename='jscript/inventory-function.js') }}"></script>

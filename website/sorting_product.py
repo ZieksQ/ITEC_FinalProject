@@ -1,5 +1,6 @@
 from flask import Blueprint, request, redirect, render_template, url_for, flash, get_flashed_messages
 from website.models import Product
+from website.views import format_price
 
 sorting_product = Blueprint('sorting_product', __name__)
 
@@ -21,8 +22,7 @@ def sorted_by_inventory():
     elif order == 'asc_price':
         products = Product.query.order_by(columnid.asc()).all()
     else:
-        products = Product.query.order_by(columnstock.asc()).all()
-        products = Product.query.order_by(columnid.asc()).all()
+        products = Product.query.order_by(columnstock.asc(), columnid.asc()).all()
 
     return render_template('Inventory.html', products=products, order=order, sort=sort, format_price=format_price)
 
@@ -34,7 +34,7 @@ def sorted_by_search():
 
     columnstock = getattr(Product, sort, Product.stock)
     columnid = getattr(Product, sort, Product.id)
-    
+
     if order == 'desc_stock':
         searches = Product.query.order_by(columnstock.desc()).all()
     elif order == 'asc_stock':
@@ -44,11 +44,6 @@ def sorted_by_search():
     elif order == 'asc_price':
         searches = Product.query.order_by(columnid.asc()).all()
     else:
-        searches = Product.query.order_by(columnid.asc()).all()
-        searches = Product.query.order_by(columnstock.asc()).all()
+        searches = Product.query.order_by(columnid.asc(), columnstock.asc()).all()
 
     return render_template('search.html', searches=searches, order=order, sort=sort, format_price=format_price)
-
-
-def format_price(price):
-    return f"₱{float(price):,.2f}"

@@ -196,39 +196,38 @@
             <tbody id="table-body">
               <!--Table body -->
               <table>
-                {% for product in products %}
+                {% for producto in products %}
                 <tr>
                   <td>{{ loop.index }}</td>
-                  <td>{{ product.product_name }}</td>
-                  <td>{{ format_price(product.price) }}</td>
-                  <td>{{ product.stock }}</td>
-                  <td>{{ product.manufacturer }}</td>
-                  <td>{{ product.category.upper() }}</td>
-                  <td>{{ product.date_created.date() }}</td>
-                  <td>{{ product.date_updated.date() }}</td>
+                  <td>{{ producto.product_name }}</td>
+                  <td>{{ format_price(producto.price) }}</td>
+                  <td>{{ producto.stock }}</td>
+                  <td>{{ producto.manufacturer }}</td>
+                  <td>{{ producto.category.upper() }}</td>
+                  <td>{{ producto.date_created.date() }}</td>
+                  <td>{{ producto.date_updated.date() }}</td>
                   <td>
-                    <a href="{{ url_for('delete_update_product.delete', id=product.id) }}">Delete</a>
-
+                    <a href="{{ url_for('delete_update_product.delete', id=producto.id) }}">Delete</a>
                     <br>
-                    <button id="add-item" onclick="showForm('{{ product.id }}')">
+                    <button id="add-item" onclick="showForm('{{ producto.id }}')">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                       </svg>
                       <p>Update Item/Back</p>
                     </button>
-                    <div id="formContainer-{{ product.id }}" style="display: none;">
-                      <form action="{{ url_for('delete_update_product.update', id=product.id) }}" method="POST">
-                        <input type="text" name="product_name" value="{{ product.product_name }}" required>
+                    <div id="formContainer-{{ producto.id }}" style="display: none;">
+                      <form action="{{ url_for('delete_update_product.update', id=producto.id) }}" method="POST">
+                        <input type="text" name="product_name" value="{{ producto.product_name }}" required>
                         <br>
-                        <input type="number" name="price" value="{{ product.price }}" required>
+                        <input type="number" name="price" value="{{ producto.price }}" required>
                         <br>
-                        <input type="number" name="stock" value="{{ product.stock }}" required>
+                        <input type="number" name="stock" value="{{ producto.stock }}" required>
                         <br>
-                        <input type="text" name="manufacturer" value="{{ product.manufacturer }}" required>
+                        <input type="text" name="manufacturer" value="{{ producto.manufacturer }}" required>
                         <p>Category:</p>
                         <select name="category" required>
-                          <option value="{{ product.category.upper() }}">{{ product.category.upper() }}</option>
+                          <option value="{{ producto.category.upper() }}">{{ producto.category.upper() }}</option>
                           <option value="gpu">Graphics Card (GPU)</option>
                           <option value="cpu">Processor (CPU)</option>
                           <option value="motherboard">Motherboard</option>

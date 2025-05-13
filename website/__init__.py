@@ -21,12 +21,12 @@ def run_app():
     app.register_blueprint(sorting_product, url_prefix='/sorted')
     app.register_blueprint(delete_update_product, url_prefix='/deleted_updated')
 
+    with app.app_context():
+        db.create_all()
+
     @app.teardown_appcontext
     def shutdown_session(exception=None):
         db.session.remove()
-
-    with app.app_context():
-        db.create_all()
 
     return app
 
