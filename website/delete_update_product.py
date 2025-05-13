@@ -54,7 +54,8 @@ def delete_in_search(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
-        return redirect(url_for('sorting_product.sorted_by_inventory'))
+        flash('Product deleted successfully!', category='success')
+        return redirect(url_for('sorting_product.sorted_by_search'))
     except Exception as e:
         db.session.rollback()
         flash(f'Failed to update product! error:{e}', category='error')

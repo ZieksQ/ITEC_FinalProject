@@ -138,35 +138,18 @@
               <input id="search-input" name="search" type="text" placeholder="Search">
             </div>
           </form>
-          <button id="sort-button">
-            <p>Sort by</p>
-            <svg xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 320 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-              <path
-                d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
-            </svg>
-          </button>
           <th>
-            <a
-              href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_product', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}">
-              Sorts by the stock
-              {% if order == 'desc_stock' %}
-              ▲
-              {% else %}
-              ▼
-              {% endif %}
-            </a>
-          </th>
-          <th>
-            <a
-              href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}">
-              Sorts by the Unique Id
-              {% if order == 'desc_price' %}
-              ▲
-              {% else %}
-              ▼
-              {% endif %}
-            </a>
+            <button id="sort-button">
+              <a
+                href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_id' if order == 'desc_id' else 'desc_id') }}">
+                Sorts by the Unique Id
+                {% if order == 'desc_id' %}
+                ▲
+                {% else %}
+                ▼
+                {% endif %}
+              </a>
+            </button>
           </th>
           <button id="add-item">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -183,13 +166,48 @@
             <thead>
               <tr class="thead">
                 <th>#</th>
-                <th>Name</th>
-                <th>Price (₱)</th>
-                <th>Stock</th>
-                <th>Manufacturer</th>
-                <th>Category</th>
-                <th>Added Date</th>
-                <th>Updated Date</th>
+                <th><a
+                    href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_name' if order == 'desc_name' else 'desc_name') }}"
+                    class="white-lines">
+                    Name {% if order == 'desc_name' %} ▲ {% else %} ▼ {% endif %}
+                  </a>
+                </th>
+                <th><a
+                    href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_price' if order == 'desc_price' else 'desc_price') }}"
+                    class="white-lines">
+                    Price (₱) {% if order == 'desc_price' %} ▲ {% else %} ▼ {% endif %}
+                  </a>
+                </th>
+                <th><a
+                    href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_stock' if order == 'desc_stock' else 'desc_stock') }}"
+                    class="white-lines">
+                    Stock {% if order == 'desc_stock' %} ▲ {% else %} ▼ {% endif %}
+                  </a>
+                </th>
+                <th><a
+                    href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_manufacturer' if order == 'desc_manufacturer' else 'desc_manufacturer') }}"
+                    class="white-lines">
+                    Manufacturer {% if order == 'desc_manufacturer' %} ▲ {% else %} ▼ {% endif %}
+                  </a>
+                </th>
+                <th><a
+                    href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_category' if order == 'desc_category' else 'desc_category') }}"
+                    class="white-lines">
+                    Category {% if order == 'desc_category' %} ▲ {% else %} ▼ {% endif %}
+                  </a>
+                </th>
+                <th><a
+                    href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_created' if order == 'desc_created' else 'desc_created') }}"
+                    class="white-lines">
+                    Added Date {% if order == 'desc_created' %} ▲ {% else %} ▼ {% endif %}
+                  </a>
+                </th>
+                <th><a
+                    href="{{ url_for('sorting_product.sorted_by_inventory', sort='sorted_by_the_DB_ID', order='asc_updated' if order == 'desc_updated' else 'desc_updated') }}"
+                    class="white-lines">
+                    Updated Date {% if order == 'desc_updated' %} ▲ {% else %} ▼ {% endif %}
+                  </a>
+                </th>
                 <th>Action</th>
               </tr>
             </thead>
