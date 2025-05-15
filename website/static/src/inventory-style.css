@@ -311,12 +311,14 @@ tbody tr:hover {
     margin: 20px 10px;
   }
 }
+
 .flash-message {
   padding: 15px;
   margin: 10px 0;
   border-radius: 4px;
   position: relative;
-  background-color: #e0ffe0; /* default success */
+  background-color: #e0ffe0;
+  /* default success */
   color: #333;
 }
 
@@ -324,6 +326,7 @@ tbody tr:hover {
   background-color: #ffd6d6;
   color: #a00;
 }
+
 .flash-message.success {
   background-color: #00f000c0;
   color: #a00;
@@ -337,9 +340,11 @@ tbody tr:hover {
   font-weight: bold;
   font-size: 20px;
 }
+
 a {
   text-decoration: none;
 }
-.white-lines{
+
+.white-lines {
   color: white;
 }
