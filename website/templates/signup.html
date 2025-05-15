@@ -33,7 +33,7 @@
 
   <div class="checkbox-container">
     <input type="checkbox" id="terms" required>
-    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</label>
+    <label for="terms">I agree to the <a href="{{ url_for('views.tos') }}">Terms of Service</a> and <a href="{{ url_for('views.privacy') }}">Privacy Policy</a>.</label>
   </div>
 
   <button type="submit">Sign Up</button>

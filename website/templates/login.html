@@ -28,8 +28,8 @@
     <a href="{{ url_for('views.sign_in') }}" class="register">Create new account</a>
     <div class="footer-links">
       <a href="#">Contact</a> • 
-      <a href="#">Privacy and Policy</a> • 
-      <a href="#">Terms of Service</a>
+      <a href="{{ url_for('views.tos') }}">Privacy and Policy</a> • 
+      <a href="{{ url_for('views.privacy') }}">Terms of Service</a>
     </div>
   </div>
 </body>
