@@ -1,0 +1,203 @@
+/*Login Form */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: white;
+}
+
+.header {
+  background: url('draweer.png') no-repeat center center/cover;
+  padding: 100px 20px; 
+  text-align: center;
+  position: relative;
+  height: 300px;
+  color: white;
+  overflow: hidden;
+}
+.header-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(162, 121, 231, 0.5); 
+  z-index: 1;
+}
+
+.text-container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  top: 10%;
+  transform: translateY(-50%);
+}
+.text-container h1 {
+  font-size: 70px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+.subheading {
+  font-size: 18px; 
+  font-weight: 500;
+  margin-top: 10px;
+  color: #f0eaff; 
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.login-box {
+  background: white;
+  width: 300px;
+  margin: -195px auto 30px auto; 
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+.login-box h2 {
+  margin-bottom: 20px;
+}
+.login-box input[type="text"],
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.login-box button {
+  background: #a379e7;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.forgot {
+  text-align: right;
+  margin-bottom: 15px;
+}
+.forgot a {
+  color: #a379e7;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.divider {
+  margin: 20px 0;
+  color: #888;
+}
+
+.register {
+  display: inline-block;
+  color: #4a00e0;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer-links {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* SignUp Form*/
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); 
+  backdrop-filter: blur(3px);   
+  z-index: 5;
+}
+
+.signup-box {
+  background: rgba(255, 255, 255, 0.95);
+  width: 400px;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.signup-box h2 {
+  font-size: 24px;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.name-fields {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.name-fields input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.signup-box input[type="text"],
+.signup-box input[type="email"],
+.signup-box input[type="password"],
+.signup-box input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.checkbox-container {
+  text-align: left;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+.checkbox-container input {
+  margin-right: 6px;
+}
+.checkbox-container label a {
+  color: #4a00e0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-box button {
+  background: #a379e7;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.login-link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+.login-link a {
+  color: #4a00e0;
+  font-weight: bold;
+  text-decoration: none;
+}
