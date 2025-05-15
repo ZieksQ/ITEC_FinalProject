@@ -13,7 +13,17 @@ def home():
 def the_profile():
 
     return render_template("profile.html")
+
+@views.route('/sign_up_user', methods=['POST', 'GET'])
+def sign_in():
+
+    return render_template("signup.html")
         
+@views.route('/login_user', methods=['POST', 'GET'])
+def login():
+
+    return render_template("login.html")
+
 @views.route('/inventory', methods=['POST', 'GET'])
 def add_product():
     if request.method == 'POST': 

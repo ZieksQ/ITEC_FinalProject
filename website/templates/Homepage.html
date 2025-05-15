@@ -24,8 +24,12 @@
         <li><a>Contacts</a></li>
         <li><a href="{{ url_for('views.the_profile') }}">Portfolio</a></li>
       </ul>
-      <button class="secondary-button">Log in</button>
-      <button class="primary-button">Sign up</button>
+      <a href="{{ url_for('views.login') }}">
+        <button class="secondary-button">Log in</button>
+      </a>
+      <a href="{{ url_for('views.sign_in') }}">
+        <button class="primary-button">Sign up</button>
+      </a>
     </section>
   </header>
   <!--Main section-->
