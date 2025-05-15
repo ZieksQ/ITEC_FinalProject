@@ -7,7 +7,7 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['POST', 'GET'])
 def home():
 
-    return render_template("setting.html")
+    return render_template("Homepage.html")
 
 @views.route('/profile', methods=['POST', 'GET'])    
 def the_profile():
@@ -18,11 +18,11 @@ def the_profile():
 def add_product():
     if request.method == 'POST': 
             id = request.form.get('id')
-            product_name = request.form['product_name']
-            price = request.form['price']
-            stock = request.form['stock']
-            manufacturer = request.form['manufacturer']
-            category = request.form['category']
+            product_name = request.form.get('product_name')
+            price = request.form.get('price')
+            stock = request.form.get('stock')
+            manufacturer = request.form.get('manufacturer')
+            category = request.form.get('category')
 
             existing_product = Product.query.filter_by(product_name=product_name).first()
 
@@ -37,112 +37,29 @@ def add_product():
                     db.session.commit()
                     flash('Product added successfully!', category='success')
                     return redirect('/inventory')
-                except:
-                    return "There was an issue adding your product"
+                except Exception as e:
+                    db.session.rollback()
+                    flash(f'Failed to add product! error:{e}', category='error')
+                    return redirect('/inventory')
+                
     else:
         products = Product.query.order_by(Product.date_created).all()
-        for product in products:
-            product.price = format_price(product.price)
-        return render_template("Inventory.html", products=products)
+        return render_template("Inventory.html", products=products, format_price=format_price)
         
-@views.route('/delete/<int:id>')
-def delete(id):
-    task_to_delete = Product.query.get_or_404(id)
-    try:
-        db.session.delete(task_to_delete)
-        db.session.commit()
-        return redirect('/inventory')
-    except:
-        return "There was a problem deleting that task"
-    
-@views.route('/update/<int:id>', methods=['GET', 'POST'])
-def update(id):
-
-    product = Product.query.get_or_404(id)
-
-    if request.method == 'POST':
-        product.product_name = request.form['product_name']
-        product.price = request.form['price']
-        product.stock = request.form['stock']
-        product.manufacturer = request.form['manufacturer']
-        product.category = request.form['category']
-
-        try:
-            db.session.commit()
-            return redirect('/inventory')
-        except:
-            return "You have failed to update the task"
-    else:
-        return render_template('Inventory.html', product=product)
-    
 @views.route('/search', methods=['POST', 'GET'])
 def search():
-    query = request.args.get('search')
-    print(query)
+    querry = request.args.get('search', 'Nothing')
 
-    if query:
-        searches = Product.query.filter(Product.product_name.ilike(f'%{query}%') | Product.manufacturer.ilike(f'%{query}%')).order_by(Product.id.asc()).limit(100).all()
+    if querry:
+        searches = Product.query.filter(
+            Product.product_name.ilike(f'%{querry}%') | Product.manufacturer.ilike(f'%{querry}%') | Product.category.ilike(f'%{querry}%')
+            ).order_by(Product.id.asc()).limit(100).all()
 
     else:
         flash('No product found!', category='error')
         searches = Product.query.all()
 
-    for product in searches:
-        product.price = format_price(product.price)
-        
-    return render_template('search.html', searches=searches)
-
-@views.route('/inventory_sorted_by_the_stock', methods=['POST', 'GET'])
-def sorted_by_inventory():
-
-    sort = request.args.get('sort', 'prodcut_name')
-    order = request.args.get('order', 'asc')
-
-    columnstock = getattr(Product, sort, Product.stock)
-    columnid = getattr(Product, sort, Product.id)
-
-    if order == 'desc_stock':
-        products = Product.query.order_by(columnstock.desc()).all()
-    elif order == 'asc_stock':
-        products = Product.query.order_by(columnstock.asc()).all()
-    elif order == 'desc_price':
-        products = Product.query.order_by(columnid.desc()).all()
-    elif order == 'asc_price':
-        products = Product.query.order_by(columnid.asc()).all()
-    else:
-        products = Product.query.order_by(columnstock.asc()).all()
-        products = Product.query.order_by(columnid.asc()).all()
-
-    for product in products:
-            product.price = format_price(product.price)
-
-    return render_template('Inventory.html', products=products, order=order, sort=sort)
-
-@views.route('/search_sorted_by_the_stock', methods=['POST', 'GET'])
-def sorted_by_search():
-
-    sort = request.args.get('sort', 'prodcut_name')
-    order = request.args.get('order', 'asc')
-
-    columnstock = getattr(Product, sort, Product.stock)
-    columnid = getattr(Product, sort, Product.id)
-    
-    if order == 'desc_stock':
-        searches = Product.query.order_by(columnstock.desc()).all()
-    elif order == 'asc_stock':
-        searches = Product.query.order_by(columnstock.asc()).all()
-    elif order == 'desc_price':
-        searches = Product.query.order_by(columnid.desc()).all()
-    elif order == 'asc_price':
-        searches = Product.query.order_by(columnid.asc()).all()
-    else:
-        searches = Product.query.order_by(columnstock.asc()).all()
-        searches = Product.query.order_by(columnid.asc()).all()
-
-    for product in searches:
-            product.price = format_price(product.price)
-
-    return render_template('search.html', searches=searches, order=order, sort=sort)
+    return render_template('search.html', searches=searches, format_price=format_price)
 
 def format_price(price):
     return f"₱{float(price):,.2f}"
