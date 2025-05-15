@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login Page</title>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='src/login.css') }}">
 </head>
 <body>
  <div class="header">
@@ -16,7 +16,7 @@
 </div>
   <div class="login-box">
     <h2>Log in</h2>
-    <form action="/login" method="POST">
+    <form action="{{ url_for('views.home') }}" method="POST">
       <input type="text" name="email" placeholder="Email" required>
       <input type="password" name="password" placeholder="Password" required>
       <div class="forgot">
@@ -25,11 +25,11 @@
       <button type="submit">Log in</button>
     </form>
     <div class="divider">OR</div>
-    <a href="signup.html" class="register">Create new account</a>
+    <a href="{{ url_for('views.sign_in') }}" class="register">Create new account</a>
     <div class="footer-links">
       <a href="#">Contact</a> • 
-      <a href="#">Privacy and Policy</a> • 
-      <a href="#">Terms of Service</a>
+      <a href="{{ url_for('views.tos') }}">Privacy and Policy</a> • 
+      <a href="{{ url_for('views.privacy') }}">Terms of Service</a>
     </div>
   </div>
 </body>

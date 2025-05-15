@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up</title>
-  <link rel="stylesheet" href="login.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='src/login.css') }}"/>
 </head>
 <body>
   <div class="header">
@@ -19,7 +19,7 @@
 
     <h2>Sign Up</h2>
 
-<form action="/signup" method="POST">
+<form action="{{ url_for('views.home') }}" method="POST">
     <input type="text" name="username" placeholder="Username" required>
     <input type="email" name="email" placeholder="Email" required>
 
@@ -33,7 +33,7 @@
 
   <div class="checkbox-container">
     <input type="checkbox" id="terms" required>
-    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</label>
+    <label for="terms">I agree to the <a href="{{ url_for('views.tos') }}">Terms of Service</a> and <a href="{{ url_for('views.privacy') }}">Privacy Policy</a>.</label>
   </div>
 
   <button type="submit">Sign Up</button>

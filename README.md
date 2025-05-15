@@ -74,6 +74,6 @@
 
 ###
 
-<p align="left">ZieksQ - Planning???</p>
+<p align="left">ZieksQ - Big big billionaire the big big dolla dolla sponsor</p>
 
 ###

@@ -10,19 +10,51 @@ def sorted_by_inventory():
     sort = request.args.get('sort', 'product_name')
     order = request.args.get('order', 'asc')
 
-    columnstock = getattr(Product, sort, Product.stock)
     columnid = getattr(Product, sort, Product.id)
+    columnname = getattr(Product, sort, Product.product_name)
+    columnprice  = getattr(Product, sort, Product.price)
+    columnstock = getattr(Product, sort, Product.stock)
+    columnmanufacturer = getattr(Product, sort, Product.manufacturer)
+    columncategory = getattr(Product, sort, Product.category)
+    columncreated = getattr(Product, sort, Product.date_created)
+    columnupdated = getattr(Product, sort, Product.date_updated)
 
-    if order == 'desc_stock':
-        products = Product.query.order_by(columnstock.desc()).all()
-    elif order == 'asc_stock':
-        products = Product.query.order_by(columnstock.asc()).all()
+    if order == 'desc_id':
+        column = columnid.desc()
+    elif order == 'asc_id':
+        column = columnid.asc()
+    elif order == 'desc_name':
+        column = columnname.desc()
+    elif order == 'asc_name':
+        column = columnname.asc()
     elif order == 'desc_price':
-        products = Product.query.order_by(columnid.desc()).all()
+        column = columnprice.desc()
     elif order == 'asc_price':
-        products = Product.query.order_by(columnid.asc()).all()
+        column = columnprice.asc()
+    elif order == 'desc_stock':
+        column = columnstock.desc()
+    elif order == 'asc_stock':
+        column = columnstock.asc()
+    elif order == 'desc_manufacturer':
+        column = columnmanufacturer.desc()
+    elif order == 'asc_manufacturer':
+        column = columnmanufacturer.asc()
+    elif order == 'desc_category':
+        column = columncategory.desc()
+    elif order == 'asc_category':
+        column = columncategory.asc()
+    elif order == 'desc_created':
+        column = columncreated.desc()
+    elif order == 'asc_created':
+        column = columncreated.asc()
+    elif order == 'desc_updated':
+        column = columnupdated.desc()
+    elif order == 'asc_updated':
+        column = columnupdated.asc()
     else:
-        products = Product.query.order_by(columnstock.asc(), columnid.asc()).all()
+        column = columnid.asc()
+
+    products = Product.query.order_by(column).all()
 
     return render_template('Inventory.html', products=products, order=order, sort=sort, format_price=format_price)
 
@@ -32,18 +64,50 @@ def sorted_by_search():
     sort = request.args.get('sort', 'product_name')
     order = request.args.get('order', 'asc')
 
-    columnstock = getattr(Product, sort, Product.stock)
     columnid = getattr(Product, sort, Product.id)
+    columnname = getattr(Product, sort, Product.product_name)
+    columnprice  = getattr(Product, sort, Product.price)
+    columnstock = getattr(Product, sort, Product.stock)
+    columnmanufacturer = getattr(Product, sort, Product.manufacturer)
+    columncategory = getattr(Product, sort, Product.category)
+    columncreated = getattr(Product, sort, Product.date_created)
+    columnupdated = getattr(Product, sort, Product.date_updated)
 
-    if order == 'desc_stock':
-        searches = Product.query.order_by(columnstock.desc()).all()
-    elif order == 'asc_stock':
-        searches = Product.query.order_by(columnstock.asc()).all()
+    if order == 'desc_id':
+        column = columnid.desc()
+    elif order == 'asc_id':
+        column = columnid.asc()
+    elif order == 'desc_name':
+        column = columnname.desc()
+    elif order == 'asc_name':
+        column = columnname.asc()
     elif order == 'desc_price':
-        searches = Product.query.order_by(columnid.desc()).all()
+        column = columnprice.desc()
     elif order == 'asc_price':
-        searches = Product.query.order_by(columnid.asc()).all()
+        column = columnprice.asc()
+    elif order == 'desc_stock':
+        column = columnstock.desc()
+    elif order == 'asc_stock':
+        column = columnstock.asc()
+    elif order == 'desc_manufacturer':
+        column = columnmanufacturer.desc()
+    elif order == 'asc_manufacturer':
+        column = columnmanufacturer.asc()
+    elif order == 'desc_category':
+        column = columncategory.desc()
+    elif order == 'asc_category':
+        column = columncategory.asc()
+    elif order == 'desc_created':
+        column = columncreated.desc()
+    elif order == 'asc_created':
+        column = columncreated.asc()
+    elif order == 'desc_updated':
+        column = columnupdated.desc()
+    elif order == 'asc_updated':
+        column = columnupdated.asc()
     else:
-        searches = Product.query.order_by(columnid.asc(), columnstock.asc()).all()
+        column = columnid.asc()
+
+    searches = Product.query.order_by(column).all()
 
     return render_template('search.html', searches=searches, order=order, sort=sort, format_price=format_price)
