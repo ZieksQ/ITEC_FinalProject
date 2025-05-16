@@ -66,14 +66,14 @@
 
 ###
 
-<p align="left">Zoro - UI/UX</p>
+<p align="left">Zoro - UI/UX Frontend</p>
 
 ###
 
-<p align="left">Snowden - UI</p>
+<p align="left">Snowden - UI/Frontend</p>
 
 ###
 
-<p align="left">ZieksQ - Big big billionaire the big big dolla dolla sponsor</p>
+<p align="left">ZieksQ - Big big billionaire the big big dolla dolla sponsor/Frontend</p>
 
 ###
