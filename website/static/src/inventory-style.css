@@ -95,7 +95,7 @@
   transform: translateX(-10px);
 }
 
-#modal {
+#modal, .formContainer-background {
   display: none;
   position: fixed;
   top: 0;
@@ -108,7 +108,7 @@
   align-items: center;
 }
 
-#modal-container {
+#modal-container, .formContainer-style {
   background-color: var(--white-color);
   width: 500px;
   border-radius: 15px;
@@ -116,16 +116,20 @@
   overflow: hidden;
 }
 
-.modal-header {
+.modal-header, .update-header {
   background-color: var(--primary-color);
   color: var(--white-color);
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-.modal-header p {
+.modal-header p, .update-header h1{
   font-size: 1.5rem;
   font-weight: 600;
 }
@@ -143,14 +147,14 @@
   height: 24px;
 }
 
-.modal-content {
+.modal-content, .formContainer-form {
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.modal-input-container {
+.modal-input-container, .formContainer-form input {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -162,7 +166,9 @@
 }
 
 .modal-input-container input,
-.modal-input-container select {
+.modal-input-container select,
+.formContainer-form input,
+.formContainer-form select {
   padding: 10px 15px;
   border: 2px solid var(--secondary-color);
   border-radius: 8px;
@@ -172,7 +178,9 @@
 }
 
 .modal-input-container input:focus,
-.modal-input-container select:focus {
+.modal-input-container select:focus,
+.formContainer-form input:focus, 
+.formContainer-form select:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px var(--secondary-color);
 }
@@ -188,7 +196,7 @@
   margin-top: 10px;
 }
 
-.modal-buttons button {
+.modal-buttons button, .formContainer-form button {
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: 500;
@@ -207,7 +215,7 @@
   color: var(--white-color);
 }
 
-#submit-button {
+#submit-button, .formContainer-form button {
   background-color: var(--primary-color);
   border: none;
   color: var(--white-color);
@@ -350,5 +358,14 @@ a {
 }
 
 .formContainer-style {
-  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30vw;
+  height: auto;
+  padding: min(20px, 5%);
+  background-color: var(--background-color);
+  padding-top: 100px;
+
 }

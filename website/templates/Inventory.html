@@ -117,33 +117,7 @@
                   </svg>
                   <p>Update Item/Back</p>
                 </button>
-                <div class="formContainer-style" id="formContainer-{{ producto.id }}" style="display: none;">
-                  <form action="{{ url_for('delete_update_product.update', id=producto.id) }}" method="POST">
-                    <input type="text" name="product_name" value="{{ producto.product_name }}" required>
-                    <br>
-                    <input type="number" name="price" value="{{ producto.price }}" required>
-                    <br>
-                    <input type="number" name="stock" value="{{ producto.stock }}" required>
-                    <br>
-                    <input type="text" name="manufacturer" value="{{ producto.manufacturer }}" required>
-                    <p>Category:</p>
-                    <select name="category" required>
-                      <option value="{{ producto.category.upper() }}">{{ producto.category.upper() }}</option>
-                      <option value="gpu">Graphics Card (GPU)</option>
-                      <option value="cpu">Processor (CPU)</option>
-                      <option value="motherboard">Motherboard</option>
-                      <option value="ram">Memory (RAM)</option>
-                      <option value="storage">Storage (SSD/HDD)</option>
-                      <option value="psu">Power Supply (PSU)</option>
-                      <option value="case">Computer Case</option>
-                      <option value="cooling">Cooling Solutions</option>
-                      <option value="peripherals">Peripherals</option>
-                      <option value="networking">Networking</option>
-                      <option value="other">Other</option>
-                    </select>
-                    <button type="submit">Update Product</button>
-                  </form>
-                </div>
+
               </td>
             </tr>
             {% endfor %}
@@ -209,6 +183,42 @@
   </div>
 </div>
 </div>
+{% for producto in products %}
+<div class="formContainer-background" id="formContainer-{{ producto.id }}" style="display: none;">
+  <div class="formContainer-style" >
+  <section class="update-header">
+    <h1>Update Item</h1>
+    <p>X</p>
+  </section>
+  <form class="formContainer-form" action="{{ url_for('delete_update_product.update', id=producto.id) }}" method="POST">
+    <input type="text" name="product_name" value="{{ producto.product_name }}" required>
+    <br>
+    <input type="number" name="price" value="{{ producto.price }}" required>
+    <br>
+    <input type="number" name="stock" value="{{ producto.stock }}" required>
+    <br>
+    <input type="text" name="manufacturer" value="{{ producto.manufacturer }}" required>
+    <p>Category:</p>
+    <select name="category" required>
+      <option value="{{ producto.category.upper() }}">{{ producto.category.upper() }}</option>
+      <option value="gpu">Graphics Card (GPU)</option>
+      <option value="cpu">Processor (CPU)</option>
+      <option value="motherboard">Motherboard</option>
+      <option value="ram">Memory (RAM)</option>
+      <option value="storage">Storage (SSD/HDD)</option>
+      <option value="psu">Power Supply (PSU)</option>
+      <option value="case">Computer Case</option>
+      <option value="cooling">Cooling Solutions</option>
+      <option value="peripherals">Peripherals</option>
+      <option value="networking">Networking</option>
+      <option value="other">Other</option>
+    </select>
+    <button type="submit">Update Product</button>
+  </form>
+</div>
+</div>
+
+{% endfor %}
 <script src="{{ url_for('static', filename='jscript/base-function.js') }}"></script>
 <script src="{{ url_for('static', filename='jscript/inventory-function.js') }}"></script>
 

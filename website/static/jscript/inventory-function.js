@@ -7,10 +7,15 @@ const cancelButton = document.getElementById('cancel-button');
 const submitButton = document.getElementById('submit-button');
 const tableBody = document.querySelector('tbody');
 const modalTitle = document.querySelector('.modal-header p');
+const editModal = document.getElementsById('formContainer-background');
 
 // Variables for edit mode
 let isEditMode = false;
 let currentEditRow = null;
+
+function hideEditModal() {
+    editModal.style.display = 'none';
+}
 
 // Function to show modal
 function showModal() {
@@ -158,10 +163,15 @@ addItemButton.addEventListener('click', showModal);
 closeModalButton.addEventListener('click', hideModal);
 cancelButton.addEventListener('click', hideModal);
 submitButton.addEventListener('click', handleSubmit);
-
+editModal.addEventListener('click', (e) => {
+    if (e.target === editModal) {
+        hideEditModal();
+    }
+});
 // Close modal when clicking outside
 modal.addEventListener('click', (e) => {
     if (e.target === modal) {
         hideModal();
     }
 });
+
