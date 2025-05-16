@@ -58,6 +58,7 @@ def add_product():
         
 @views.route('/search', methods=['POST', 'GET'])
 def search():
+    
     querry = request.args.get('search', 'Nothing')
 
     if querry:
