@@ -73,7 +73,8 @@ def update_in_search(id):
         product.manufacturer = request.form.get('manufacturer')
         product.category = request.form.get('category')
 
-        existing_product = Product.query.filter(Product.product_name.ilike(product.product_name), Product.id != id).first()
+        with db.session.no_autoflush:
+            existing_product = Product.query.filter(Product.product_name.ilike(product.product_name), Product.id != id).first()
 
         if existing_product:
             flash('Product with this name already exists!', category='error')

@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='src/login.css') }}"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='src/login.css') }}" />
 </head>
+
 <body>
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %} {% if category == 'error' %}
+  <div class="flash-message {{ category }}">
+    {{ message }}
+    <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+  </div>
+  {% else %}
+  <div class="flash-message {{ category }}">
+    {{ message }}
+    <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+  </div>
+  {% endif %} {% endfor %} {% endif %} {% endwith %}
   <div class="header">
     <div class="header-overlay"></div>
     <div class="text-container">
@@ -19,25 +33,27 @@
 
     <h2>Sign Up</h2>
 
-<form action="{{ url_for('views.home') }}" method="POST">
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="email" name="email" placeholder="Email" required>
+    <form action="{{ url_for('auth.sign_in') }}" method="POST">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="email" name="email" placeholder="Email" required>
 
-  <div class="name-fields">
-    <input type="text" name="first_name" placeholder="First Name" required>
-    <input type="text" name="last_name" placeholder="Last Name" required>
-  </div>
+      <div class="name-fields">
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="last_name" placeholder="Last Name" required>
+      </div>
 
-  <input type="password" name="password1" placeholder="Password" required>
-  <input type="password" name="password2" placeholder="Confirm Password" required>
+      <input type="password" name="password1" placeholder="Password" required>
+      <input type="password" name="password2" placeholder="Confirm Password" required>
 
-  <div class="checkbox-container">
-    <input type="checkbox" id="terms" required>
-    <label for="terms">I agree to the <a href="{{ url_for('views.tos') }}">Terms of Service</a> and <a href="{{ url_for('views.privacy') }}">Privacy Policy</a>.</label>
-  </div>
+      <div class="checkbox-container">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">I agree to the <a href="{{ url_for('views.tos') }}">Terms of Service</a> and <a
+            href="{{ url_for('views.privacy') }}">Privacy Policy</a>.</label>
+      </div>
 
-  <button type="submit">Sign Up</button>
-</form>
+      <button type="submit">Sign Up</button>
+    </form>
   </div>
 </body>
+
 </html>
