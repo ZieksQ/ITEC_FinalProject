@@ -123,7 +123,7 @@
   padding: 2rem;
   border-radius: 15px;
   width: 90%;
-  height: min(80vh, 50rem);
+  height: auto;
   overflow: auto;
   max-width: 500px;
   position: relative;
