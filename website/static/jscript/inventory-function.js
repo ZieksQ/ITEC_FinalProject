@@ -1,8 +1,7 @@
-
 // Get DOM elements
 const addItemButton = document.getElementById('add-item');
-const modal = document.getElementById('modal');
-const closeModalButton = document.getElementById('close-modal');
+const addModal = document.getElementById('add-modal');
+const closeModalButtons = document.querySelectorAll('.close-modal');
 const cancelButton = document.getElementById('cancel-button');
 const submitButton = document.getElementById('submit-button');
 const tableBody = document.querySelector('tbody');
@@ -12,22 +11,42 @@ const modalTitle = document.querySelector('.modal-header p');
 let isEditMode = false;
 let currentEditRow = null;
 
-// Function to show modal
-function showModal() {
-    modal.style.display = 'flex';
+// Function to show add modal
+function showAddModal() {
+    addModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
     modalTitle.textContent = 'Add Product';
     submitButton.textContent = 'Add Product';
     isEditMode = false;
     currentEditRow = null;
 }
 
-// Function to hide modal
-function hideModal() {
-    modal.style.display = 'none';
+// Function to hide add modal
+function hideAddModal() {
+    addModal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Restore background scrolling
     // Clear form inputs
     document.querySelectorAll('.modal-input-container input, .modal-input-container select').forEach(input => {
         input.value = '';
     });
+}
+
+// Function to show edit modal
+function showEditModal(productId) {
+    const editModal = document.getElementById('formContainer-' + productId);
+    if (editModal) {
+        editModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// Function to hide edit modal
+function hideEditModal(productId) {
+    const editModal = document.getElementById('formContainer-' + productId);
+    if (editModal) {
+        editModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
 }
 
 // Function to get current date in YYYY-MM-DD format
@@ -97,43 +116,8 @@ function editRow(button) {
     document.querySelector('input[placeholder="Enter manufacturer name"]').value = cells[5].textContent;
 
     // Show modal
-    showModal();
+    showEditModal(cells[0].textContent);
 }
-
-// // Function to handle form submission
-// function handleSubmit(event) {
-//     event.preventDefault();
-
-//     const formData = {
-//         name: document.querySelector('input[placeholder="Enter product name"]').value,
-//         price: document.querySelector('input[placeholder="Enter price"]').value,
-//         stock: document.querySelector('input[placeholder="Enter stock quantity"]').value,
-//         category: document.querySelector('select').value,
-//         manufacturer: document.querySelector('input[placeholder="Enter manufacturer name"]').value
-//     };
-
-//     // Validate form data
-//     if (!formData.name || !formData.price || !formData.stock || !formData.category || !formData.manufacturer) {
-//         alert('Please fill in all fields');
-//         return;
-//     }
-
-//     if (isEditMode && currentEditRow) {
-//         // Update existing row
-//         const cells = currentEditRow.cells;
-//         cells[1].textContent = formData.name;
-//         cells[2].textContent = formatPrice(formData.price);
-//         cells[3].textContent = formData.stock;
-//         cells[4].textContent = formData.category;
-//         cells[5].textContent = formData.manufacturer;
-//         cells[7].textContent = getCurrentDate(); // Update the "Updated Date"
-//     } else {
-//         // Add new row
-//         addTableRow(formData);
-//     }
-
-//     hideModal();
-// }
 
 // Function to delete row
 function deleteRow(button) {
@@ -153,15 +137,81 @@ function updateRowNumbers() {
     });
 }
 
-// Event listeners
-addItemButton.addEventListener('click', showModal);
-closeModalButton.addEventListener('click', hideModal);
-cancelButton.addEventListener('click', hideModal);
-submitButton.addEventListener('click', handleSubmit);
+// Event Listeners
+addItemButton.addEventListener('click', showAddModal);
 
 // Close modal when clicking outside
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        hideModal();
+addModal.addEventListener('click', (e) => {
+    if (e.target === addModal) {
+        hideAddModal();
     }
 });
+
+// Add event listeners for all close buttons
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal-background');
+        if (modal.id === 'add-modal') {
+            hideAddModal();
+        } else {
+            const productId = modal.id.split('-')[1];
+            hideEditModal(productId);
+        }
+    });
+});
+
+// Add event listeners for all edit modals
+document.querySelectorAll('.modal-background').forEach(modal => {
+    if (modal.id !== 'add-modal') {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                const productId = modal.id.split('-')[1];
+                hideEditModal(productId);
+            }
+        });
+    }
+});
+
+// Cancel button event listener
+if (cancelButton) {
+    cancelButton.addEventListener('click', hideAddModal);
+}
+
+// Form validation
+function validateForm(form) {
+    const inputs = form.querySelectorAll('input[required], select[required]');
+    let isValid = true;
+
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add('error');
+        } else {
+            input.classList.remove('error');
+        }
+    });
+
+    return isValid;
+}
+
+// Add form submission handler
+const addForm = document.querySelector('#add-modal form');
+if (addForm) {
+    addForm.addEventListener('submit', (e) => {
+        if (!validateForm(addForm)) {
+            e.preventDefault();
+            alert('Please fill in all required fields');
+        }
+    });
+}
+
+// Edit form submission handler
+document.querySelectorAll('.formContainer-form').forEach(form => {
+    form.addEventListener('submit', (e) => {
+        if (!validateForm(form)) {
+            e.preventDefault();
+            alert('Please fill in all required fields');
+        }
+    });
+});
+

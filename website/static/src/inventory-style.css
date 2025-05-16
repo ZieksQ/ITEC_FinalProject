@@ -95,7 +95,8 @@
   transform: translateX(-10px);
 }
 
-#modal {
+/* Modal Styles */
+.modal-background {
   display: none;
   position: fixed;
   top: 0;
@@ -108,62 +109,84 @@
   align-items: center;
 }
 
-#modal-container {
+#edit-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-wrapper {
   background-color: var(--white-color);
-  width: 500px;
+  position: absolute;
+  
+  padding: 2rem;
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  width: 90%;
+  height: auto;
+  overflow: auto;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-wrapper::-webkit-scrollbar, .modal-container::-webkit-scrollbar {
+  display: none;
 }
 
 .modal-header {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--secondary-color);
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 1rem;
+  border-radius: 15px 15px 0 0;
+  margin: -2rem -2rem 2rem -2rem;
 }
 
-.modal-header p {
+.modal-header h1 {
+  margin: 0;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-#close-modal {
+.close-modal {
   background: none;
   border: none;
-  color: var(--white-color);
   cursor: pointer;
-  padding: 5px;
+  padding: 0.5rem;
+  color: var(--white-color);
 }
 
-#close-modal svg {
-  width: 24px;
-  height: 24px;
-}
-
-.modal-content {
-  padding: 20px;
+.modal-content,
+.formContainer-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 1.5rem;
+  padding-top: 1rem;
 }
 
 .modal-input-container {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0.75rem;
 }
 
 .modal-input-container p {
+  margin: 0;
   font-weight: 500;
   color: var(--primary-color);
 }
 
 .modal-input-container input,
-.modal-input-container select {
-  padding: 10px 15px;
+.modal-input-container select,
+.formContainer-form input,
+.formContainer-form select {
+  padding: 0.75rem;
   border: 2px solid var(--secondary-color);
   border-radius: 8px;
   font-size: 1rem;
@@ -172,48 +195,61 @@
 }
 
 .modal-input-container input:focus,
-.modal-input-container select:focus {
+.modal-input-container select:focus,
+.formContainer-form input:focus,
+.formContainer-form select:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px var(--secondary-color);
 }
 
-.modal-input-container input::placeholder {
-  color: var(--secondary-color);
+.modal-input-container input.error,
+.modal-input-container select.error,
+.formContainer-form input.error,
+.formContainer-form select.error {
+  border-color: #e74c3c;
 }
 
 .modal-buttons {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--secondary-color);
 }
 
-.modal-buttons button {
-  padding: 10px 20px;
+.modal-buttons button,
+.formContainer-form button[type="submit"] {
+  padding: 0.75rem 1.5rem;
   border-radius: 8px;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
 }
 
-#cancel-button {
+#cancel-button,
+.formContainer-form .close-modal {
   background-color: var(--white-color);
   border: 2px solid var(--secondary-color);
   color: var(--primary-color);
 }
 
-#cancel-button:hover {
+#cancel-button:hover,
+.formContainer-form .close-modal:hover {
   background-color: var(--secondary-color);
   color: var(--white-color);
 }
 
-#submit-button {
+#submit-button,
+.formContainer-form button[type="submit"] {
   background-color: var(--primary-color);
   border: none;
   color: var(--white-color);
 }
 
-#submit-button:hover {
+#submit-button:hover,
+.formContainer-form button[type="submit"]:hover {
   background-color: var(--accent-color);
 }
 
@@ -224,6 +260,7 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
   margin-top: 20px;
+  position: relative;
 }
 
 table {
@@ -236,20 +273,30 @@ table {
 .thead {
   background-color: var(--primary-color);
   color: var(--white-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 th,
 td {
-  max-width: 250px;
-  white-space: normal;
-  /* Allow line breaks */
-  word-wrap: break-word;
-  /* Break long words */
-  overflow-wrap: break-word;
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid var(--secondary-color);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
+
+/* Column widths */
+th:nth-child(1), td:nth-child(1) { width: 5%; } /* # */
+th:nth-child(2), td:nth-child(2) { width: 15%; } /* Name */
+th:nth-child(3), td:nth-child(3) { width: 10%; } /* Price */
+th:nth-child(4), td:nth-child(4) { width: 8%; } /* Stock */
+th:nth-child(5), td:nth-child(5) { width: 12%; } /* Manufacturer */
+th:nth-child(6), td:nth-child(6) { width: 12%; } /* Category */
+th:nth-child(7), td:nth-child(7) { width: 10%; } /* Added Date */
+th:nth-child(8), td:nth-child(8) { width: 10%; } /* Updated Date */
+th:nth-child(9), td:nth-child(9) { width: 18%; } /* Action */
 
 th {
   font-weight: 600;
@@ -258,57 +305,108 @@ th {
 }
 
 tbody tr {
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid var(--secondary-color);
 }
 
 tbody tr:hover {
   background-color: var(--background-color);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.action-cell {
+  min-width: 200px;
 }
 
 .action-buttons {
   display: flex;
-  gap: 10px;
+  gap: 0.75rem;
+  align-items: center;
   justify-content: flex-start;
 }
 
-.edit-btn,
-.delete-btn {
-  background: none;
-  border: none;
-  padding: 5px;
+.delete-btn,
+.update-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
   cursor: pointer;
-  border-radius: 5px;
-  transition: all 0.3s;
-}
-
-.edit-btn svg,
-.delete-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-.edit-btn {
-  color: var(--primary-color);
-}
-
-.edit-btn:hover {
-  background-color: var(--secondary-color);
-  color: var(--white-color);
+  text-decoration: none;
 }
 
 .delete-btn {
-  color: #dc3545;
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
 }
 
 .delete-btn:hover {
-  background-color: #dc3545;
-  color: var(--white-color);
+  background-color: #dc2626;
+  color: white;
+  border-color: #dc2626;
+}
+
+.update-btn {
+  background-color: #e0f2fe;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
+}
+
+.update-btn:hover {
+  background-color: #0284c7;
+  color: white;
+  border-color: #0284c7;
+}
+
+.delete-btn svg,
+.update-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.delete-btn:hover svg,
+.update-btn:hover svg {
+  transform: scale(1.1);
 }
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .table-container {
     margin: 20px 10px;
+  }
+  
+  th, td {
+    padding: 12px 8px;
+    font-size: 0.9rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .delete-btn,
+  .update-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  th, td {
+    padding: 10px 6px;
+    font-size: 0.85rem;
+  }
+  
+  .action-cell {
+    min-width: 150px;
   }
 }
 
