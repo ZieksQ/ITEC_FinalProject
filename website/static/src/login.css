@@ -201,3 +201,12 @@ body {
   font-weight: bold;
   text-decoration: none;
 }
+.flash-message.error {
+  background-color: #ffd6d6;
+  color: #a00;
+}
+
+.flash-message.success {
+  background-color: #00f000c0;
+  color: #a00;
+}

@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 db_name = "database.db"
@@ -16,10 +17,13 @@ def run_app():
     from .views import views
     from .sorting_product import sorting_product
     from .delete_update_product import delete_update_product
+    from .auth import auth
+    from . import models
     
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(sorting_product, url_prefix='/sorted')
     app.register_blueprint(delete_update_product, url_prefix='/deleted_updated')
+    app.register_blueprint(auth, url_prefix='/auth')
 
     create_database(app)
 
