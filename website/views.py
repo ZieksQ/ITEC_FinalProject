@@ -51,6 +51,10 @@ def search():
     
     querry = request.args.get('search', 'Nothing')
 
+    # Redirect to /inventory if the query is an empty string
+    if querry == "":
+        return redirect(url_for('views.add_product'))
+
     if querry:
         searches = Product.query.filter(
             Product.product_name.ilike(f'%{querry}%') | Product.manufacturer.ilike(f'%{querry}%') | Product.category.ilike(f'%{querry}%')

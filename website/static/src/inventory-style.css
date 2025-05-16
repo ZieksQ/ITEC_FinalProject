@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden; 
+}
+
 .main-top {
   display: flex;
   flex-direction: row;
