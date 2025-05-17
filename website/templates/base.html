@@ -26,18 +26,7 @@
         </svg>
       </div>
       <p>OneDee.com</p>
-      {% with messages = get_flashed_messages(with_categories=true) %} {% if
-      messages %} {% for category, message in messages %} {% if category == 'error' %}
-      <div class="flash-message {{ category }}">
-        {{ message }}
-        <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-      </div>
-      {% else %}
-      <div class="flash-message {{ category }}">
-        {{ message }}
-        <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-      </div>
-      {% endif %} {% endfor %} {% endif %} {% endwith %}
+      
     </section>
     <section class="right-section">
       <ul>
@@ -61,6 +50,18 @@
     </section>
   </nav>
   <!--main body-->
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %} {% if category == 'error' %}
+      <div class="flash-message {{ category }}">
+        {{ message }}
+        <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
+      {% else %}
+      <div class="flash-message {{ category }}">
+        {{ message }}
+        <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
+      {% endif %} {% endfor %} {% endif %} {% endwith %}
   <!--SideBar-->
   <div class="body-container">
     <aside id="side-bar">
@@ -120,6 +121,7 @@
       </section>
     </aside>
     <!--Main content-->
+    
     {% block body %} {% endblock %}
 </body>
 
