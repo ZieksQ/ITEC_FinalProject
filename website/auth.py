@@ -53,7 +53,7 @@ def login():
             return redirect(url_for('views.add_product'))
         else:
             flash('Username and password are not match! Please try again', category='error')
-            return render_template("login.html")
+            return render_template("login.html", form=form)
 
     return render_template("login.html", form=form)
 
