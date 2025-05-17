@@ -52,7 +52,7 @@ def login():
             flash(f'Success! You are logged in as: {attempted_user.email}', category='success')
             return redirect(url_for('views.add_product'))
         else:
-            flash('Username and password are not match! Please try again', category='error')
+            flash('Username and password does not match! Please try again', category='error')
             return render_template("login.html", form=form)
 
     return render_template("login.html", form=form)
