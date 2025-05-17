@@ -6,7 +6,6 @@ body {
 }
 
 .header {
-  background: url('draweer.png') no-repeat center center/cover;
   padding: 100px 20px; 
   text-align: center;
   position: relative;
@@ -20,8 +19,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(162, 121, 231, 0.5); 
+  background-color: rgba(92, 0, 250, 0.5); 
   z-index: 1;
+}
+
+.header-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
 }
 
 .text-container {
