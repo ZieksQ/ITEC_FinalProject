@@ -43,8 +43,12 @@ def login():
 
     form = LoginForm()
 
-    # if form.validate_on_submit():
-    #     attempted_user = User.query.filter(username=form.username.data)
+    if form.validate_on_submit():
+        attempted_user = User.query.filter(email=form.email.data).first()
+        if attempted_user and attempted_user.check_password_correction(
+            attempted_password=form.password.data
+        ):
+            pass
 
 
 
