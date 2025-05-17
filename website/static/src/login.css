@@ -129,6 +129,11 @@ input[type="submit"] {
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.15);
 }
 
+input[type="submit"]:hover {
+  background-color: rgb(83, 204, 83);
+}
+
+
 .forgot {
   display: flex;
   flex-direction: column;
