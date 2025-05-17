@@ -87,7 +87,9 @@
       </div>
     </div>
     <div class="main-bottom-right">
-      <button id="log-out">Log out</button>
+      <a href="{{ url_for('views.logout') }}">
+        <button id="log-out">Log out</button>
+      </a>
       <button id="edit-profile">Edit Profile</button>
     </div>
   </section>
