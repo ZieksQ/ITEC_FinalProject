@@ -4,9 +4,11 @@ from os import path
 from flask_migrate import Migrate
 from flask_login import LoginManager
 
+
 db = SQLAlchemy()
 db_name = "database.db"
 login_manager = LoginManager()
+# bycrype = 
 
 def run_app():
     app = Flask(__name__)
