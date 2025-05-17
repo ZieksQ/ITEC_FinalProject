@@ -9,20 +9,12 @@
 </head>
 
 <body>
-  {% with messages = get_flashed_messages(with_categories=true) %} {% if
-  messages %} {% for category, message in messages %} {% if category == 'error' %}
-  <div class="flash-message {{ category }}">
-    {{ message }}
-    <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-  </div>
-  {% else %}
-  <div class="flash-message {{ category }}">
-    {{ message }}
-    <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-  </div>
-  {% endif %} {% endfor %} {% endif %} {% endwith %}
+
   <div class="header">
-    <div class="header-overlay"></div>
+    <div class="header-overlay">
+      <img src="{{ url_for('static', filename='Images/draweer.png') }}" alt="Logo" class="logo">
+    </div>
+    
     <div class="text-container">
       <h1>Welcome!</h1>
       <p class="subheading">Your One-Stop Shop for Quality Computer Accessories — Powered by OneDee™</p>
@@ -30,20 +22,47 @@
   </div>
   <div class="background-overlay"></div>
   <div class="signup-box">
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %} {% if category == 'error' %}
+    <div class="flash-message {{ category }}">
+      {{ message }}
+      <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    {% else %}
+    <div class="flash-message {{ category }}">
+      {{ message }}
+      <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
 
     <h2>Sign Up</h2>
 
     <form action="{{ url_for('auth.sign_in') }}" method="POST">
-      <input type="text" name="username" placeholder="Username" required>
-      <input type="email" name="email" placeholder="Email" required>
+
+      {{ form.hidden_tag() }}
+
+      {{ form.username.label }}
+      {{ form.username( placeholder='Enter username' ) }}
+
+      {{ form.email.label }}
+      {{ form.email( placeholder='Enter email' ) }}
 
       <div class="name-fields">
-        <input type="text" name="first_name" placeholder="First Name" required>
-        <input type="text" name="last_name" placeholder="Last Name" required>
+        <div>
+          {{ form.first_name.label }}
+          {{ form.first_name( placeholder='Enter first name' ) }}
+        </div>
+        <div>
+          {{ form.last_name.label }}
+          {{ form.last_name( placeholder='Enter last name' ) }}
+        </div>
       </div>
 
-      <input type="password" name="password1" placeholder="Password" required>
-      <input type="password" name="password2" placeholder="Confirm Password" required>
+      {{ form.password1.label }}
+      {{ form.password1( placeholder='Enter password' ) }}
+
+      {{ form.password2.label }}
+      {{ form.password2( placeholder='Confirm password' ) }}
 
       <div class="checkbox-container">
         <input type="checkbox" id="terms" required>
@@ -51,7 +70,8 @@
             href="{{ url_for('views.privacy') }}">Privacy Policy</a>.</label>
       </div>
 
-      <button type="submit">Sign Up</button>
+      {{ form.submit() }}
+
     </form>
   </div>
 </body>
