@@ -115,7 +115,7 @@ body {
 }
 
 
-input[type="submit"] {
+.login-box-SN.button {
   background-color: rgb(94, 221, 94);
   color: white;
   font-size: 1rem;
