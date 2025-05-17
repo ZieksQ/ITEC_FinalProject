@@ -127,6 +127,15 @@
     <!--Main content-->
 
     {% block body %} {% endblock %}
+    
+    <script>
+  setTimeout(function() {
+    const flashMessages = document.querySelectorAll('.flash-message');
+    flashMessages.forEach(function(message) {
+      message.style.display = 'none';
+    });
+  }, 4000); // 4000ms = 4 seconds
+</script>
 </body>
 
 </html>
