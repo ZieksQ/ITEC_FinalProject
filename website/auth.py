@@ -41,6 +41,13 @@ def sign_in():
 @auth.route('/login_user', methods=['POST', 'GET'])
 def login():
 
+    form = LoginForm()
+
+    # if form.validate_on_submit():
+    #     attempted_user = User.query.filter(username=form.username.data)
+
+
+
     return render_template("login.html")
 
 class RegistrationForm(FlaskForm):
