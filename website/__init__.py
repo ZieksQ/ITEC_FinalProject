@@ -3,12 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_migrate import Migrate
 from flask_login import LoginManager
-
+from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
 db_name = "database.db"
 login_manager = LoginManager()
-# bycrype = 
+bcrypt = Bcrypt()
 
 def run_app():
     app = Flask(__name__)
@@ -16,10 +16,11 @@ def run_app():
     app.config['SECRET_KEY'] = 'd0a43f4b7e97cf2d2808fb86472c8724'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    login_manager.init_app(app)    
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'info'
     
+    login_manager.init_app(app)
+    bcrypt.init_app(app)
     db.init_app(app)
     
     from .views import views

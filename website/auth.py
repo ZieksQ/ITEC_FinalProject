@@ -44,15 +44,19 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
-        attempted_user = User.query.filter(email=form.email.data).first()
+        attempted_user = User.query.filter_by(email=form.email.data).first()
         if attempted_user and attempted_user.check_password_correction(
             attempted_password=form.password.data
         ):
-            pass
+            login_user(attempted_user)
+            flash(f'Success! You are logged in as: {attempted_user.email}', category='success')
+            return redirect(url_for('views.add_product'))
+        else:
+            flash('Username and password are not match! Please try again', category='error')
+            return render_template("login.html")
 
+    return render_template("login.html", form=form)
 
-
-    return render_template("login.html")
 
 class RegistrationForm(FlaskForm):
 

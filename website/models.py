@@ -1,4 +1,4 @@
-from website import db, login_manager
+from website import db, login_manager, bcrypt
 from datetime import datetime
 from flask_login import UserMixin
 
@@ -25,7 +25,18 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(50), nullable=False)
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
-    password = db.Column(db.String(150), nullable=False)
+    _password = db.Column(db.String(150), nullable=False)
+
+    @property
+    def password(self):
+        return self._password
+    
+    @password.setter
+    def password(self, plain_text_password):
+        self._password = bcrypt.generate_password_hash(plain_text_password).decode('utf-8')
+
+    def check_password_correction(self, attempted_password):
+        return bcrypt.check_password_hash(self.password, attempted_password)
 
     # def __repr__(self):
     #     return f'<User {self.username}>'
