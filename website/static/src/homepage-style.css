@@ -165,7 +165,7 @@ main {
   width: 100%;
   background-color: var(--background-color);
   border-left: 2px solid var(--primary-color);
-  animation: animate 4s steps(12) infinite;
+  animation: animate 4s steps(23) infinite;
 }
 @keyframes animate {
   40%, 60%{
