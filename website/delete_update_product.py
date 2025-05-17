@@ -11,6 +11,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
+        flash("Product delete succesfully", category='error')
         return redirect(url_for('sorting_product.sorted_by_inventory'))
     except Exception as e:
         db.session.rollback()

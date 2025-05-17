@@ -14,7 +14,7 @@
     <div class="header-overlay">
       <img src="{{ url_for('static', filename='Images/draweer.png') }}" alt="Logo" class="logo">
     </div>
-    
+
     <div class="text-container">
       <h1>Welcome!</h1>
       <p class="subheading">Your One-Stop Shop for Quality Computer Accessories — Powered by OneDee™</p>
@@ -71,6 +71,8 @@
       </div>
 
       {{ form.submit() }}
+      <div class="divider">OR</div>
+      <a href="{{ url_for('auth.login') }}" class="register">Login to new account</a>
 
     </form>
   </div>
