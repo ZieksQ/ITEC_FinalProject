@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
   <div class="header">
     <div class="header-overlay">
       <img src="{{ url_for('static', filename='Images/draweer.png') }}" alt="Logo" class="logo">
@@ -70,7 +69,7 @@
             href="{{ url_for('views.privacy') }}">Privacy Policy</a>.</label>
       </div>
 
-      {{ form.submit() }}
+      {{ form.submit( class_="login-box-signup button") }}
 
     </form>
   </div>

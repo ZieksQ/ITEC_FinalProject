@@ -167,7 +167,7 @@ input[type="submit"]:hover {
   color: #666;
 }
 
-/* SignUp Form*/
+/* SignUp Form---------------------------------------*/
 .background-overlay {
   position: fixed;
   top: 0;
@@ -181,7 +181,7 @@ input[type="submit"]:hover {
 
 .signup-box {
   background: rgba(255, 255, 255, 0.95);
-  width: 400px;
+  width: min(400px, 50%);
   padding: 40px 30px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -190,14 +190,35 @@ input[type="submit"]:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  text-align: start;
   backdrop-filter: blur(10px);
+}
+
+.signup-box form input {
+  width: 100%;
+  font-weight: 400;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  background-color: rgb(246, 246, 255);
+  border: 3px solid var(--secondary-color);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.15s;
+}
+.signup-box form input:focus {
+  border-color: var(--primary-button-color);
 }
 
 .signup-box h2 {
   font-size: 24px;
   margin-bottom: 25px;
   font-weight: bold;
+  text-align: center;
 }
 
 .name-fields {
@@ -228,20 +249,34 @@ input[type="submit"]:hover {
 }
 
 .checkbox-container {
-  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  column-gap: none;
   font-size: 12px;
+  text-wrap: nowrap;
+  box-sizing: border-box;
   margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+  background-color: red;
 }
+
 .checkbox-container input {
-  margin-right: 6px;
+  padding: 0;
+  margin: 0;
+  width: 0;
 }
+
 .checkbox-container label a {
   color: #4a00e0;
   text-decoration: none;
   font-weight: bold;
 }
 
-.signup-box button {
+.login-box-signup.button {
   background: #a379e7;
   color: white;
   border: none;
@@ -251,6 +286,11 @@ input[type="submit"]:hover {
   cursor: pointer;
   font-weight: bold;
   font-size: 14px;
+  transition: all 0.15s;
+}
+
+.login-box-signup.button:hover {
+  background-color: #966cda;
 }
 
 .login-link {
