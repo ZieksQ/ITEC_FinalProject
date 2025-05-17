@@ -1,7 +1,7 @@
 ScrollReveal({
     delay: 200,
     interval: 400,
-    reset: true
+    //reset: true
 });
 
 ScrollReveal().reveal(".section-1, .section-2, .section-4, .footer-animation", {
