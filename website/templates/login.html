@@ -44,7 +44,7 @@
       <div class="forgot">
         <a href="#">Forgot Password? (display lang po ito, di ko kami gagamit ng Gmail API) </a>
       </div>
-      {{ form.submit() }}
+      {{ form.submit( class_="login-box button") }}
     </form>
     <div class="divider">OR</div>
     <a href="{{ url_for('auth.sign_in') }}" class="register">Create new account</a>
