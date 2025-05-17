@@ -26,7 +26,7 @@ def sign_in():
             db.session.commit()
             login_user(new_user)
             flash('User created successfully!', category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.add_product'))
         except Exception as e:
             db.session.rollback()
             flash(f'Failed to create user! error :{e}', category='error')
