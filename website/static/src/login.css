@@ -1,7 +1,19 @@
 /*Login Form */
+:root {
+  --primary-color: #7B3DD8;
+  --background-color: #F4F3FB;
+  --secondary-color: #c49eff;
+  --accent-color: rgb(95, 34, 170);
+  --primary-button-color: #3D0B87;
+  --secondary-button-color: #b59ed9;
+
+  --white-color: white;
+  --black-color: black
+}
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Poppins, sans-serif;
   background: white;
 }
 
@@ -53,39 +65,77 @@ body {
 
 .login-box {
   background: white;
-  width: 300px;
-  margin: -195px auto 30px auto; 
+  width: min(350px, 50vw);
+  height: auto;
+  margin: -205px auto 30px auto; 
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   text-align: center;
   position: relative;
   z-index: 5;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
 }
 .login-box h2 {
+  margin: 0;
   margin-bottom: 20px;
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
+
+.login-box form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+}
+
+.login-box form label {
+  text-align: start;
+}
+
 .login-box input[type="text"],
 .login-box input[type="password"] {
   width: 100%;
-  padding: 10px;
+  font-weight: 400;
+  padding: 10px 15px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  background-color: rgb(246, 246, 255);
+  border: 3px solid var(--secondary-color);
+  border-top: none;
+  border-left: none;
+  border-right: none;
   box-sizing: border-box;
+  outline: none;
+  transition: all 0.15s;
 }
-.login-box button {
-  background: #a379e7;
+
+.login-box input[type="text"]:focus,
+.login-box input[type="password"]:focus {
+  border-color: var(--primary-button-color);
+}
+
+
+input[type="submit"] {
+  background-color: rgb(94, 221, 94);
   color: white;
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
-  padding: 10px;
+  padding: 15px;
   width: 100%;
-  border-radius: 6px;
+  border-radius: 3px;
   cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.15);
 }
 
 .forgot {
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  row-gap: 15px;
   margin-bottom: 15px;
 }
 .forgot a {
