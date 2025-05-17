@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const userNameDisplay = document.getElementById('user-name-display');
   const editNameInput = document.getElementById('edit-name');
 
-  //user Employment Id
-  const editEmploymentInput = document.getElementById('edit-employment-id');
-  const userEmploymentDisplay = document.getElementById('user-employment-display');
 
   //userEmail
   const editEmailInput = document.getElementById('edit-email')
@@ -50,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function showEditModal() {
     // Set the current name in the input field when opening the modal
     editNameInput.value = userNameDisplay.textContent;
-    editEmploymentInput.value = userEmploymentDisplay.textContent;
+    
     editEmailInput.value = userEmaildisplay.textContent;
     editUsernameInput.value = usernameDisplay.textContent;
     editPasswordInput.value = passwordDisplay.textContent;
@@ -82,10 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
       userNameDisplay.textContent = newName;
     }
 
-    const newEmploymentId = editEmploymentInput.value.trim();
-    if (newEmploymentId) {
-      userEmploymentDisplay.textContent = newEmploymentId;
-    }
 
     const newEmail = editEmailInput.value.trim();
     if (newEmail) {
