@@ -22,19 +22,16 @@
   </div>
   <div class="background-overlay"></div>
   <div class="signup-box">
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %} {% for category, message in messages %} {% if category == 'error' %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
     <div class="flash-message {{ category }}">
       {{ message }}
       <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
     </div>
-    {% else %}
-    <div class="flash-message {{ category }}">
-      {{ message }}
-      <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-    </div>
-    {% endif %} {% endfor %} {% endif %} {% endwith %}
-
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <h2>Sign Up</h2>
 
     <form action="{{ url_for('auth.sign_in') }}" method="POST">

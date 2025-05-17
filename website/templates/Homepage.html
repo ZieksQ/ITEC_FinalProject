@@ -38,20 +38,19 @@
     </section>
   </header>
   <!--Main section-->
-  {% with messages = get_flashed_messages(with_categories=true) %} {% if
-  messages %} {% for category, message in messages %} {% if category == 'error' %}
-  <div class="flash-message {{ category }}">
-    {{ message }}
-    <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-  </div>
-  {% else %}
-  <div class="flash-message {{ category }}">
-    {{ message }}
-    <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-  </div>
-  {% endif %} {% endfor %} {% endif %} {% endwith %}
+
   <main>
     <section class="section-1" id="scroll-interval">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <div class="flash-message {{ category }}">
+        {{ message }}
+        <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
       <div class="container-ani">
         <span class="text first-text">Efficient Inventory, </span>
         <span class="text sec-text">Smarter Operations</span>
