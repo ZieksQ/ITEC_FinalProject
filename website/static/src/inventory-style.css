@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden; 
+}
+
 .main-top {
   display: flex;
   flex-direction: row;
@@ -123,7 +127,7 @@
   padding: 2rem;
   border-radius: 15px;
   width: 90%;
-  height: min(80vh, 50rem);
+  height: auto;
   overflow: auto;
   max-width: 500px;
   position: relative;
@@ -410,14 +414,21 @@ tbody tr:hover {
   }
 }
 
+
+
 .flash-message {
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 4px;
-  position: relative;
-  background-color: #e0ffe0;
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 25px 45px;
+  border-radius: 5px;
+  background-color: var(--background-color);
+  font-weight: bold;
   /* default success */
   color: #333;
+  z-index: 5000;
+  box-shadow: 0 15px 25px rgba(0,0,0, 0.2);
 }
 
 .flash-message.error {
@@ -427,7 +438,7 @@ tbody tr:hover {
 
 .flash-message.success {
   background-color: #00f000c0;
-  color: #a00;
+  color: white;
 }
 
 .close-button {

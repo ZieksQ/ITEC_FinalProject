@@ -1,36 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login Page</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='src/login.css') }}">
 </head>
+
 <body>
- <div class="header">
-  <div class="header-overlay"></div>
-  <div class="text-container">
-    <h1>Welcome!</h1>
-    <p class="subheading"> Your One-Stop Shop for Quality Computer Accessories — Powered by OneDee™ </p>
+  <div class="header">
+    <div class="header-overlay">
+      <img src="{{ url_for('static', filename='Images/draweer.png') }}" alt="Logo" class="logo">
+    </div>
+    <div class="text-container">
+
+      <h1>Welcome!</h1>
+      <p class="subheading"> Your One-Stop Shop for Quality Computer Accessories — Powered by OneDee™ </p>
+    </div>
   </div>
-</div>
   <div class="login-box">
     <h2>Log in</h2>
-    <form action="{{ url_for('views.home') }}" method="POST">
-      <input type="text" name="email" placeholder="Email" required>
-      <input type="password" name="password" placeholder="Password" required>
+    <form action="{{ url_for('auth.login') }}" method="POST">
+
+      {{ form.hidden_tag() }}
+
+      {{ form.email.label() }}
+      {{ form.email(placeholder='Enter email') }}
+
+      {{ form.password.label() }}
+      {{ form.password(placeholder='Enter password') }}
+
       <div class="forgot">
-        <a href="#">Forgot Password?</a>
+        <a href="#">Forgot Password? (display lang po ito pampalamuti) </a>
       </div>
-      <button type="submit">Log in</button>
+      {{ form.submit() }}
     </form>
     <div class="divider">OR</div>
     <a href="{{ url_for('auth.sign_in') }}" class="register">Create new account</a>
     <div class="footer-links">
-      <a href="#">Contact</a> • 
-      <a href="{{ url_for('views.tos') }}">Privacy and Policy</a> • 
+      <a href="#">Contact</a> •
+      <a href="{{ url_for('views.tos') }}">Privacy and Policy</a> •
       <a href="{{ url_for('views.privacy') }}">Terms of Service</a>
     </div>
   </div>
 </body>
+
 </html>
