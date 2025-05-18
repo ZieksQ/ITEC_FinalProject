@@ -1,0 +1,165 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #7B3DD8;
+  --background-color: #F4F3FB;
+  --secondary-color: #c49eff;
+  --accent-color: rgb(95, 34, 170);
+  --primary-button-color: #3D0B87;
+  --secondary-button-color: #b59ed9;
+
+  --white-color: white;
+  --black-color: black
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+
+body img {
+  width: 100dvw;
+  height: 100dvh;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(3px);
+  transform: scale(1.1);
+}
+
+main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+
+.contact-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.contact-header h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: white;
+}
+
+.contact-header p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  text-align: center;
+  color: white;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  align-items: center;
+}
+
+.contact-cards {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  row-gap: 20px;
+  padding: 35px;
+  height: 350px;
+  border: none;
+  border-radius: 10px;
+  width: auto;
+  box-shadow: 0 20px 25px rgba(0,0,0, 0.2);
+  background-color: white;
+  transition: all 0.4s;
+}
+
+
+.contact-cards:hover {
+  transform: translateY(-10px);
+}
+
+.contact-color-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 100%;
+  height: 15px;
+  background-color: rgb(29, 165, 29);
+}
+
+.contact-cards p {
+  opacity: 0.8;
+  width: 30ch;
+  letter-spacing: 1px;
+  line-height: 25px;
+}
+
+.button-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.button-container button {
+  background-color: white;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(29, 165, 29);
+  padding: 10px 20px;
+  width: 100%;
+  border: 2px solid rgb(29, 165, 29);
+  border-radius: 30px;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: rgb(29, 165, 29);
+  color: white;
+}
+
+#middle-card .contact-color-header{
+  background-color: var(--primary-button-color);
+}
+
+#middle-card button {
+  border-color: var(--primary-button-color);
+  color: var(--primary-button-color);
+}
+
+#middle-card button:hover {
+  background-color: var(--primary-button-color);
+  color: white;
+}
+
+
+#last-card .contact-color-header {
+   background-color: violet;
+}
+
+#last-card button {
+  border-color: violet;
+  color: violet
+}
+
+#last-card button:hover {
+  background-color: violet;
+  color: white;
+}
