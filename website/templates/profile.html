@@ -17,6 +17,7 @@
         </svg>
       </div>
       <div>
+        <img src="{{ image_file }}" alt="users profile  ">
         <input id="upload-picture" type="file" accept="image/*" style="display: none;">
         <button id="upload-picture-button" onclick="document.getElementById('upload-picture').click()">Upload
           File</button>
@@ -24,13 +25,13 @@
     </div>
     <div class="main-top-right">
       <div class="user-name-container">
-        <h1 id="user-name-display">John Doe</h1>
+        <h1 id="username-display">{{ current_user.username }}</h1>
         <p id="user-role">Admin</p>
       </div>
       <div class="user-data-container">
         <div class="user-information">
           <p class="user-data-header">User Information:</p>
-          
+
           <div class="info-container">
             <p>Email:</p>
             <p id="user-email-display">{{ current_user.email }}</p>
@@ -38,12 +39,12 @@
 
           <div class="info-container">
             <p>First Name:</p>
-            <p id="user-email-display">{{ current_user.first_name }}</p>
+            <p id="firstname-display">{{ current_user.first_name }}</p>
           </div>
 
           <div class="info-container">
             <p>Last Name:</p>
-            <p id="user-email-display">{{ current_user.last_name }}</p>
+            <p id="lastname-display">{{ current_user.last_name }}</p>
           </div>
         </div>
         <div class="user-details">
@@ -53,8 +54,12 @@
             <p id="username-display">{{ current_user.username }}</p>
           </div>
           <div class="info-container">
-            <p>Password:</p>
-            <p id="password-display">QWERTY</p>
+            <p>Password: (password of user without bcrypt)</p>
+            <p id="password-display">{{ current_user.display_password }}</p>
+          </div>
+          <div class="info-container">
+            <p>Password: (password of user with bcrypt)</p>
+            <p id="password-display">{{ current_user.password }}</p>
           </div>
         </div>
       </div>
@@ -105,17 +110,20 @@
     </section>
     <section class="modal-input" style="padding-top: 80px;">
       <div class="input-container">
-        <p>Name:</p>
-        <input type="text" id="edit-name" placeholder="Enter name">
-      </div>
-      
-      <div class="input-container">
-        <p>Email:</p>
-        <input id="edit-email" type="text" placeholder="Enter email">
+        {{ form.email.label() }}
+        {{ form.email( id="edit-email", value=current_user.email ) }}
       </div>
       <div class="input-container">
-        <p>Username:</p>
-        <input id="edit-username" type="text" placeholder="Enter username">
+        {{ form.username.label() }}
+        {{ form.username( id="edit-username", value=current_user.username ) }}
+      </div>
+      <div class="input-container">
+        {{ form.first_name.label() }}
+        {{ form.first_name( id="edit-firstname", value=current_user.first_name ) }}
+      </div>
+      <div class="input-container">
+        {{ form.last_name.label() }}
+        {{ form.last_name( id="edit-lastname", value=current_user.lastname ) }}
       </div>
       <div class="input-container">
         <p>Password:</p>
@@ -124,7 +132,7 @@
     </section>
     <section class="modal-buttons">
       <button id="cancel-edit-button">Cancel</button>
-      <button id="submit-edit-button">Submit</button>
+      {{ form.submit() }}
     </section>
   </div>
 </div>

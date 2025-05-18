@@ -26,6 +26,8 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
     _password = db.Column(db.String(150), nullable=False)
+    display_password = db.Column(db.String(150), nullable=False)
+    image_file = db.Column(db.String(40), nullable=False, default='default.jpg')
 
     @property
     def password(self):
