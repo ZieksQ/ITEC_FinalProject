@@ -49,16 +49,7 @@
 
   <main>
     <section class="section-1" id="scroll-interval">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      {% for category, message in messages %}
-      <div class="flash-message {{ category }}">
-        {{ message }}
-        <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-      </div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
+      
       <div class="container-ani">
         <span class="text first-text">Efficient Inventory, </span>
         <span class="text sec-text">Smarter Operations</span>
@@ -181,6 +172,17 @@
       </div>
     </section>
   </footer>
+  <!--flash messages-->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <div class="flash-message" class="flash-message {{ category }}">
+        {{ message }}
+        <span class="close-button" onclick="this.parentElement.style.display='none';" style="font-size: 1.5rem; cursor: pointer;">&times;</span>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
 
   <script src="{{url_for('static', filename='jscript/scroll.js')}}"></script>
   <script>
