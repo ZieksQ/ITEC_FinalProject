@@ -2,6 +2,7 @@ from flask import Blueprint, request, redirect, render_template, url_for, flash,
 from website import db
 from website.models import Product
 from flask_login import login_required, logout_user, current_user
+from .auth import UpdateForm
 
 views = Blueprint('views', __name__)
 
@@ -14,9 +15,11 @@ def home():
 @login_required
 def the_profile():
 
+    form = UpdateForm()
+
     image_file = url_for('static', filename='Images/' + current_user.image_file)
 
-    return render_template("profile.html", user=current_user, image_file=image_file)
+    return render_template("profile.html", user=current_user, image_file=image_file, form=form)
 
 @views.route('/logout', methods=['POST', 'GET'])
 def logout():

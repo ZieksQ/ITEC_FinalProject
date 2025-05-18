@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import length, EqualTo, DataRequired, ValidationError, Email
 from .models import User
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from . import db
 
 auth = Blueprint('auth', __name__)
@@ -84,25 +84,22 @@ class LoginForm(FlaskForm):
     password = PasswordField(label='Password : ', validators=[DataRequired()])
     submit = SubmitField(label='Login')
 
-class LoginForm(FlaskForm):
-    email = StringField(label='Email : ', validators=[DataRequired()])
-    password = PasswordField(label='Password : ', validators=[DataRequired()])
-    submit = SubmitField(label='Login')
-
 class UpdateForm(FlaskForm):
 
     def validate_username(self, username_check):
-        user = User.query.filter_by(username=username_check.data).first()
-        if user:
-            raise ValidationError('Username already exists!')
+        if username_check.data != current_user.username:
+            user = User.query.filter_by(username=username_check.data).first()
+            if user:
+                raise ValidationError('Username already exists!')
         
     def validate_email(self, email_check):
-        user = User.query.filter_by(email=email_check.data).first()
-        if user:
-            raise ValidationError('Email already exists!')
+        if email_check.data != current_user.email:
+            user = User.query.filter_by(email=email_check.data).first()
+            if user:
+                raise ValidationError('Email already exists!')
 
-    username = StringField(label='Username : ', validators=[DataRequired(), length(min=2, max=20)])
-    email = StringField(label='Email : ', validators=[DataRequired(), Email()])
-    first_name = StringField(label='First Name : ', validators=[DataRequired(), length(min=2, max=30)])
-    last_name = StringField(label='Last Name : ', validators=[DataRequired(), length(min=2, max=30)])
+    username = StringField(label='Update Username : ', validators=[DataRequired(), length(min=2, max=20)])
+    email = StringField(label='Update Email : ', validators=[DataRequired(), Email()])
+    first_name = StringField(label='Update First Name : ', validators=[DataRequired(), length(min=2, max=30)])
+    last_name = StringField(label='Update Last Name : ', validators=[DataRequired(), length(min=2, max=30)])
     submit = SubmitField(label='Update Account')
