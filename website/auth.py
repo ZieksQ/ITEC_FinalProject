@@ -19,7 +19,8 @@ def sign_in():
             email=form.email.data,
             first_name=form.first_name.data,
             last_name=form.last_name.data,
-            password=form.password1.data
+            password=form.password1.data,
+            display_password=form.password1.data
         )
         try:
             db.session.add(new_user)
@@ -82,3 +83,26 @@ class LoginForm(FlaskForm):
     email = StringField(label='Email : ', validators=[DataRequired()])
     password = PasswordField(label='Password : ', validators=[DataRequired()])
     submit = SubmitField(label='Login')
+
+class LoginForm(FlaskForm):
+    email = StringField(label='Email : ', validators=[DataRequired()])
+    password = PasswordField(label='Password : ', validators=[DataRequired()])
+    submit = SubmitField(label='Login')
+
+class UpdateForm(FlaskForm):
+
+    def validate_username(self, username_check):
+        user = User.query.filter_by(username=username_check.data).first()
+        if user:
+            raise ValidationError('Username already exists!')
+        
+    def validate_email(self, email_check):
+        user = User.query.filter_by(email=email_check.data).first()
+        if user:
+            raise ValidationError('Email already exists!')
+
+    username = StringField(label='Username : ', validators=[DataRequired(), length(min=2, max=20)])
+    email = StringField(label='Email : ', validators=[DataRequired(), Email()])
+    first_name = StringField(label='First Name : ', validators=[DataRequired(), length(min=2, max=30)])
+    last_name = StringField(label='Last Name : ', validators=[DataRequired(), length(min=2, max=30)])
+    submit = SubmitField(label='Update Account')

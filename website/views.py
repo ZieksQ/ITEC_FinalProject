@@ -14,7 +14,9 @@ def home():
 @login_required
 def the_profile():
 
-    return render_template("profile.html", user=current_user)
+    image_file = url_for('static', filename='Images/' + current_user.image_file)
+
+    return render_template("profile.html", user=current_user, image_file=image_file)
 
 @views.route('/logout', methods=['POST', 'GET'])
 def logout():
@@ -60,15 +62,12 @@ def search():
     
     querry = request.args.get('search', 'Nothing')
 
-    # Redirect to /inventory if the query is an empty string
-    if querry == "":
-        return redirect(url_for('views.add_product'))
-
     if querry:
         searches = Product.query.filter(
             Product.product_name.ilike(f'%{querry}%') | Product.manufacturer.ilike(f'%{querry}%') | Product.category.ilike(f'%{querry}%')
             ).order_by(Product.id.asc()).limit(100).all()
-
+        if not searches:
+            flash("No product found!", category='error')
     else:
         flash('No product found!', category='error')
         searches = Product.query.all()

@@ -17,6 +17,7 @@
         </svg>
       </div>
       <div>
+        <img src="{{ image_file }}" alt="users profile  ">
         <input id="upload-picture" type="file" accept="image/*" style="display: none;">
         <button id="upload-picture-button" onclick="document.getElementById('upload-picture').click()">Upload
           File</button>
@@ -24,7 +25,7 @@
     </div>
     <div class="main-top-right">
       <div class="user-name-container">
-        <h1 id="user-name-display">John Doe</h1>
+        <h1 id="user-name-display">{{ current_user.username }}</h1>
         <p id="user-role">Admin</p>
       </div>
       <div class="user-data-container">
@@ -53,8 +54,12 @@
             <p id="username-display">{{ current_user.username }}</p>
           </div>
           <div class="info-container">
-            <p>Password:</p>
-            <p id="password-display">QWERTY</p>
+            <p>Password: (password of user without bcrypt)</p>
+            <p id="password-display">{{ current_user.display_password }}</p>
+          </div>
+          <div class="info-container">
+            <p>Password: (password of user with bcrypt)</p>
+            <p id="password-display">{{ current_user.password }}</p>
           </div>
         </div>
       </div>
