@@ -1,2 +1,4 @@
 __pycache__/
 instance/
+profile_pics/*
+!profile_pics/default.jpg
