@@ -13,9 +13,16 @@ def home():
 
 @views.route('/logout', methods=['POST', 'GET'])
 def logout():
+
     logout_user()
+    
     flash('You have been logged out!', category='success')
     return render_template("Homepage.html")
+
+@views.route('/contacts')
+def contacts():
+
+    return render_template("contacts.html")
 
 @views.route('/inventory', methods=['POST', 'GET'])
 @login_required

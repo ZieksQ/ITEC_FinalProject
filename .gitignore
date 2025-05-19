@@ -1,4 +1,4 @@
 __pycache__/
 instance/
-/website/profile_pics/*
-!/website/profile_pics/default.png
+# /website/profile_pics/*
+# !/website/profile_pics/default.png
