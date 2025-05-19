@@ -1,4 +1,4 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -51,7 +51,7 @@ header {
   width: 75%;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 button {
@@ -59,7 +59,7 @@ button {
   padding: 5px 20px;
   cursor: pointer;
   transition: all 0.15s;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .secondary-button {
@@ -143,8 +143,8 @@ main {
   overflow: hidden;
 }
 
-.container-ani .text{
-  position:relative;
+.container-ani .text {
+  position: relative;
   color: var(--accent-color);
   font-size: 4rem;
   font-weight: 600;
@@ -167,11 +167,15 @@ main {
   border-left: 2px solid var(--primary-color);
   animation: animate 4s steps(23) infinite;
 }
+
 @keyframes animate {
-  40%, 60%{
+
+  40%,
+  60% {
     left: calc(100% + 4px);
   }
-  100%{
+
+  100% {
     left: 0%;
   }
 }
@@ -192,7 +196,7 @@ main {
   align-items: center;
   justify-content: center;
   width: 70%;
-  
+
 }
 
 .section-2 img {
@@ -227,7 +231,7 @@ main {
 .feature-block p {
   font-size: 0.8rem;
   width: 40ch;
-  color: rgba(0,0,0,0.8);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .feature-block div {
@@ -300,7 +304,9 @@ footer p {
   width: 40ch;
 }
 
-.footer-section-2, .footer-section-2 ul, .footer-section-3 ul {
+.footer-section-2,
+.footer-section-2 ul,
+.footer-section-3 ul {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -310,7 +316,8 @@ footer p {
 
 
 
-.footer-section-2 li, .footer-section-3 li {
+.footer-section-2 li,
+.footer-section-3 li {
   list-style: none;
   font-size: .9rem;
 }
@@ -340,7 +347,7 @@ footer p {
   opacity: 1;
 }
 
-.flash-message { 
+.flash-message {
   opacity: 1;
   position: fixed;
   top: 10%;
@@ -356,7 +363,7 @@ footer p {
   border: none;
   border-radius: 8px;
   background-color: rgb(51, 248, 84);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
   z-index: 1500;
 }
 
@@ -365,4 +372,8 @@ footer p {
   top: 3%;
   right: 5%;
   color: red;
+}
+
+a {
+  text-decoration: none;
 }

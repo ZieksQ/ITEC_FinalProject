@@ -27,7 +27,7 @@
     <section class="header-right">
       <ul>
         <li><a href="https://github.com/ZieksQ/ITEC_FinalProject">About</a></li>
-        <li><a>Contacts</a></li>
+        <li><a href="{{ url_for('views.contacts') }}">Contacts</a></li>
         <li><a href="{{ url_for('auth.the_profile') }}">Portfolio</a></li>
       </ul>
       {% if current_user.is_authenticated %}

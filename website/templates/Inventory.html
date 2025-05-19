@@ -104,7 +104,7 @@
               <td>{{ producto.product_name }}</td>
               <td>{{ format_price(producto.price) }}</td>
               <td>{{ producto.stock }}</td>
-              <td>{{ producto.manufacturer }}</td>
+              <td>{{ producto.manufacturer.upper() }}</td>
               <td>{{ producto.category.upper() }}</td>
               <td>{{ producto.date_created.date() }}</td>
               <td>{{ producto.date_updated.date() }}</td>
