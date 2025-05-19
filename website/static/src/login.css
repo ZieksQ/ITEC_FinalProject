@@ -72,6 +72,7 @@ body {
   height: auto;
   margin: -205px auto 30px auto; 
   border-radius: 12px;
+  padding: 25px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
   position: relative;
@@ -118,7 +119,7 @@ body {
 }
 
 
-input[type="submit"] {
+.login-box-SN.button {
   background-color: rgb(94, 221, 94);
   color: white;
   font-size: 1rem;
@@ -185,7 +186,7 @@ input[type="submit"]:hover {
 
 .signup-box {
   background: rgba(255, 255, 255, 0.95);
-  width: 400px;
+  width: 500px;
   padding: 40px 30px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -194,12 +195,14 @@ input[type="submit"]:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  text-align: center;
+  text-align: start;
   backdrop-filter: blur(10px);
+  box-shadow: 0 15px 20px rgba(0,0,0,0.15);
 }
 
 .signup-box h2 {
-  font-size: 24px;
+  font-size: 2rem;
+  text-align: center;
   margin-bottom: 25px;
   font-weight: bold;
 }
@@ -208,6 +211,14 @@ input[type="submit"]:hover {
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
+}
+
+.signup-box input {
+  
+}
+
+.signup-box input:focus {
+  border-color: var(--primary-button-color)
 }
 
 .name-fields input {
@@ -224,22 +235,46 @@ input[type="submit"]:hover {
 .signup-box input[type="password"],
 .signup-box input[type="date"] {
   width: 100%;
-  padding: 12px;
+  font-weight: 400;
+  padding: 15px 15px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  background-color: rgb(246, 246, 255);
+  border: 2px solid rgb(193, 172, 221);
   box-sizing: border-box;
-  font-size: 14px;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.15s;
+}
+
+.signup-box input:focus{
+  border-color: var(--primary-color);
+}
+
+.signup-box form input {
+  margin-bottom: 15px;
 }
 
 .checkbox-container {
-  text-align: left;
+  text-align: center;
   font-size: 12px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .checkbox-container input {
+  margin-top: 10px;
   margin-right: 6px;
+  width: 20px;
+  height: 50px;
+  padding: 100%;
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  font-size: 0.9rem;
 }
 
 .checkbox-container label a {
@@ -310,4 +345,19 @@ input[type="submit"]:hover {
   cursor: pointer;
   transition: all 0.15s;
   box-shadow: 0 15px 20px rgba(0, 0, 0, 0.15);
+}
+
+.register-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.register {
+  text-align: center;
+}
+
+.signup-box form input {
+  margin-top: 10px;
 }

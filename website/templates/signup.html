@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up</title>
+  <link rel="icon" sizes="any" type="image/svg+xml" href="{{url_for('static', filename='Images/logo.svg')}}">
   <link rel="stylesheet" href="{{ url_for('static', filename='src/login.css') }}" />
 </head>
 
@@ -23,6 +25,7 @@
     </div>
   </div>
   <div class="background-overlay"></div>
+  <!--singup container-->
   <div class="signup-box">
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
@@ -70,8 +73,12 @@
       </div>
 
       {{ form.submit( class_="login-box-SN button" ) }}
-      <div class="divider">OR</div>
-      <a href="{{ url_for('auth.login') }}" class="register">Login to new account</a>
+      <div class="divider" style='text-align: center;'>OR</div>
+      
+      <div class="register-container">
+        <a href="{{ url_for('auth.login') }}" class="register" >Login to new account</a>
+      </div>
+      
 
     </form>
   </div>
