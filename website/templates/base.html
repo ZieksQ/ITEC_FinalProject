@@ -42,12 +42,8 @@
           </svg>
         </button>
       </a>
-      <a href="https://www.facebook.com/profile.php?id=61565498503154" target="_blank" class="user-profile">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-        </svg>
+      <a href="https://www.facebook.com/profile.php?id=61565498503154" target="_blank" >
+        <img src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" class="profile_pic" alt="users profile  ">
       </a>
 
     </section>
@@ -91,7 +87,7 @@
           </svg>
           <p>Search Product</p>
         </a>
-        <a class="side-bar-item" href="{{ url_for('views.the_profile') }}">
+        <a class="side-bar-item" href="{{ url_for('auth.the_profile') }}">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" class="size-6">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -127,15 +123,15 @@
     <!--Main content-->
 
     {% block body %} {% endblock %}
-    
+
     <script>
-  setTimeout(function() {
-    const flashMessages = document.querySelectorAll('.flash-message');
-    flashMessages.forEach(function(message) {
-      message.style.display = 'none';
-    });
-  }, 4000); // 4000ms = 4 seconds
-</script>
+      setTimeout(function () {
+        const flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach(function (message) {
+          message.style.display = 'none';
+        });
+      }, 4000); // 4000ms = 4 seconds
+    </script>
 </body>
 
 </html>

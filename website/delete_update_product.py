@@ -1,6 +1,7 @@
 from flask import Blueprint, request, redirect, render_template, url_for, flash, get_flashed_messages
 from website import db
 from website.models import Product
+from flask_login import current_user
 
 
 delete_update_product = Blueprint('delete_update_product', __name__)
