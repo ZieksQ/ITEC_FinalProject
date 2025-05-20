@@ -43,7 +43,7 @@
           </svg>
         </button>
       </a>
-      <a href="https://www.facebook.com/profile.php?id=61565498503154" target="_blank" >
+      <a href="{{ url_for('auth.the_profile') }}">
         <img src="{{ url_for('static', filename='profile_pics/' + current_user.image_file) }}" class="profile_pic" alt="users profile  ">
       </a>
 
