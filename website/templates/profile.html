@@ -57,11 +57,11 @@
             <p>{{ current_user.username }}</p>
           </div>
           <div class="info-container">
-            <p>Password: (password of user without bcrypt)</p>
+            <p>Password: (password without bcrypt/hashing)</p>
             <p>{{ current_user.display_password }}</p>
           </div>
           <div class="info-container">
-            <p>Password: (password of user with bcrypt)</p>
+            <p>Password: (password with bcrypt/hashing)</p>
             <p>{{ current_user.password }}</p>
           </div>
         </div>
