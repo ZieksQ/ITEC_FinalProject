@@ -18,6 +18,7 @@ def run_app():
 
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'info'
+    login_manager.login_message = 'Please login to access website'
     
     login_manager.init_app(app)
     bcrypt.init_app(app)

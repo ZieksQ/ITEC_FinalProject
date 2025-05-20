@@ -1,6 +1,7 @@
 from flask import Blueprint, request, redirect, render_template, url_for, flash, get_flashed_messages
 from website import db
 from website.models import Product
+from flask_login import current_user
 
 
 delete_update_product = Blueprint('delete_update_product', __name__)
@@ -11,6 +12,7 @@ def delete(id):
     try:
         db.session.delete(task_to_delete)
         db.session.commit()
+        flash("Product delete succesfully", category='error')
         return redirect(url_for('sorting_product.sorted_by_inventory'))
     except Exception as e:
         db.session.rollback()

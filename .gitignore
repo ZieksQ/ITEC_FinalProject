@@ -1,2 +1,4 @@
 __pycache__/
 instance/
+website/static/profile_pics/*
+!website/static/profile_pics/default.jpg

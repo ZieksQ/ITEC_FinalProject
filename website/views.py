@@ -1,7 +1,8 @@
 from flask import Blueprint, request, redirect, render_template, url_for, flash, get_flashed_messages
 from website import db
 from website.models import Product
-from flask_login import login_required, logout_user
+from flask_login import login_required, logout_user, current_user
+from .auth import UpdateForm
 
 views = Blueprint('views', __name__)
 
@@ -10,17 +11,18 @@ def home():
 
     return render_template("Homepage.html")
 
-@views.route('/profile', methods=['POST', 'GET'])
-@login_required
-def the_profile():
-
-    return render_template("profile.html")
-
 @views.route('/logout', methods=['POST', 'GET'])
 def logout():
+
     logout_user()
+    
     flash('You have been logged out!', category='success')
     return render_template("Homepage.html")
+
+@views.route('/contacts')
+def contacts():
+
+    return render_template("contacts.html")
 
 @views.route('/inventory', methods=['POST', 'GET'])
 @login_required
@@ -60,15 +62,12 @@ def search():
     
     querry = request.args.get('search', 'Nothing')
 
-    # Redirect to /inventory if the query is an empty string
-    if querry == "":
-        return redirect(url_for('views.add_product'))
-
     if querry:
         searches = Product.query.filter(
             Product.product_name.ilike(f'%{querry}%') | Product.manufacturer.ilike(f'%{querry}%') | Product.category.ilike(f'%{querry}%')
             ).order_by(Product.id.asc()).limit(100).all()
-
+        if not searches:
+            flash("No product found!", category='error')
     else:
         flash('No product found!', category='error')
         searches = Product.query.all()

@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sign Up</title>
+  <link rel="icon" sizes="any" type="image/svg+xml" href="{{url_for('static', filename='Images/logo.png')}}">
   <link rel="stylesheet" href="{{ url_for('static', filename='src/login.css') }}" />
 </head>
 
@@ -13,27 +14,28 @@
     <div class="header-overlay">
       <img src="{{ url_for('static', filename='Images/draweer.png') }}" alt="Logo" class="logo">
     </div>
-    
+
+
+    <!-- SIGN IN HERE  -->
+
     <div class="text-container">
       <h1>Welcome!</h1>
       <p class="subheading">Your One-Stop Shop for Quality Computer Accessories — Powered by OneDee™</p>
     </div>
   </div>
   <div class="background-overlay"></div>
+  <!--singup container-->
   <div class="signup-box">
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %} {% for category, message in messages %} {% if category == 'error' %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
     <div class="flash-message {{ category }}">
       {{ message }}
       <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
     </div>
-    {% else %}
-    <div class="flash-message {{ category }}">
-      {{ message }}
-      <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span>
-    </div>
-    {% endif %} {% endfor %} {% endif %} {% endwith %}
-
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
     <h2>Sign Up</h2>
 
     <form action="{{ url_for('auth.sign_in') }}" method="POST">
@@ -69,7 +71,7 @@
             href="{{ url_for('views.privacy') }}">Privacy Policy</a>.</label>
       </div>
 
-      {{ form.submit( class_="login-box-signup button") }}
+      {{ form.submit() }}
 
     </form>
   </div>

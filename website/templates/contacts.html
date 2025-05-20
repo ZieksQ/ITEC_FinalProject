@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='src/contacts.css') }}">
+  <link rel="icon" sizes="any" type="image/svg+xml" href="{{url_for('static', filename='Images/logo.png')}}">
+</head>
+<body>
+  <img src="{{ url_for('static', filename='Images/contact-background.jpg') }}">
+  
+  <main> <!--container-->
+    <section class="contact-header"> <!--header-->
+      <h1>Contact Us</h1>
+      <p>Have any questions? We'd love to hear from you.</p>
+    </section>
+    <section class="contact-content"> <!--cards-->
+      <div class="contact-cards"  id="first-card">
+        <div class="contact-color-header"></div>
+        <div>
+          <h2>General Inquiries</h2>
+          <p>Have questions about what we do or how we can help? We’re happy to chat and point you in the right direction.</p>
+        </div>
+        <div class="button-container">
+          <button>Get in Touch</button>
+        </div>
+      </div>
+      <div class="contact-cards" id="middle-card"> <!--middle card-->
+        <div class="contact-color-header"></div>
+        <div>
+          <h2>Help & Support</h2>
+          <p>Our support team is spread across the globe to give you answers fast.</p>
+        </div>
+        <div class="button-container">
+          <button>Support Us</button>
+        </div>
+      </div>
+      <div class="contact-cards" id="last-card">
+        <div class="contact-color-header"></div>
+        <div>
+          <h2>Partnerships</h2>
+          <p>Want to collaborate or explore a potential partnership? Let’s build something great.</p>
+        </div>
+        <div class="button-container">
+          <button>Reach Out</button>
+        </div>
+      </div>
+    </section>
+    <section class="contact-footer"> <!--footer-->
+
+    </section>
+  </main>
+</body>
+</html>

@@ -9,42 +9,60 @@
 <main id="main-content">
   <section class="main-top">
     <div class="main-top-left">
-      <div class="picture-container">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-          class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round"
-            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-        </svg>
-      </div>
       <div>
-        <input id="upload-picture" type="file" accept="image/*" style="display: none;">
-        <button id="upload-picture-button" onclick="document.getElementById('upload-picture').click()">Upload
-          File</button>
+        <img src="{{ image_file }}" class="profile_pic_profiles" alt="users profile  ">
+      </div>
+      <div class="input-container">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {{ form_picture.hidden_tag() }}
+          {{ form_picture.picture.label() }}
+          {{ form_picture.picture() }}
+          {% if form_picture.picture.errors %}
+          {% for error in form_picture.picture.errors %}
+          <div class="form_error">{{ error }}</div>
+          {% endfor %}
+          {% endif %}
+          {{ form_picture.submit() }}
+        </form>
       </div>
     </div>
     <div class="main-top-right">
       <div class="user-name-container">
-        <h1 id="user-name-display">John Doe</h1>
+        <h1 id="username-display">{{ current_user.username }}</h1>
         <p id="user-role">Admin</p>
       </div>
       <div class="user-data-container">
         <div class="user-information">
           <p class="user-data-header">User Information:</p>
-          
+
           <div class="info-container">
             <p>Email:</p>
-            <p id="user-email-display">johndoe@gmail.com</p>
+            <p>{{ current_user.email }}</p>
+          </div>
+
+          <div class="info-container">
+            <p>First Name:</p>
+            <p>{{ current_user.first_name }}</p>
+          </div>
+
+          <div class="info-container">
+            <p>Last Name:</p>
+            <p>{{ current_user.last_name }}</p>
           </div>
         </div>
         <div class="user-details">
           <p class="user-data-header">Account Details</p>
           <div class="info-container">
             <p>Username:</p>
-            <p id="username-display">John_Doe</p>
+            <p>{{ current_user.username }}</p>
           </div>
           <div class="info-container">
-            <p>Password:</p>
-            <p id="password-display">qwerty123</p>
+            <p>Password: (password of user without bcrypt)</p>
+            <p>{{ current_user.display_password }}</p>
+          </div>
+          <div class="info-container">
+            <p>Password: (password of user with bcrypt)</p>
+            <p>{{ current_user.password }}</p>
           </div>
         </div>
       </div>
@@ -77,7 +95,9 @@
       </div>
     </div>
     <div class="main-bottom-right">
-      <button id="log-out">Log out</button>
+      <a href="{{ url_for('views.logout') }}">
+        <button id="log-out">Log out</button>
+      </a>
       <button id="edit-profile">Edit Profile</button>
     </div>
   </section>
@@ -92,27 +112,32 @@
       </svg>
     </section>
     <section class="modal-input" style="padding-top: 80px;">
-      <div class="input-container">
-        <p>Name:</p>
-        <input type="text" id="edit-name" placeholder="Enter name">
-      </div>
-      
-      <div class="input-container">
-        <p>Email:</p>
-        <input id="edit-email" type="text" placeholder="Enter email">
-      </div>
-      <div class="input-container">
-        <p>Username:</p>
-        <input id="edit-username" type="text" placeholder="Enter username">
-      </div>
-      <div class="input-container">
-        <p>Password:</p>
-        <input id="edit-password" type="text" placeholder="Enter password">
-      </div>
+      <form action="" method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="input-container">
+          {{ form.email.label() }}
+          {{ form.email(value=current_user.email ) }}
+        </div>
+        <div class="input-container">
+          {{ form.username.label() }}
+          {{ form.username(value=current_user.username ) }}
+        </div>
+        <div class="input-container">
+          {{ form.first_name.label() }}
+          {{ form.first_name(value=current_user.first_name ) }}
+        </div>
+        <div class="input-container">
+          {{ form.last_name.label() }}
+          {{ form.last_name(value=current_user.last_name ) }}
+        </div>
+
     </section>
     <section class="modal-buttons">
       <button id="cancel-edit-button">Cancel</button>
-      <button id="submit-edit-button">Submit</button>
+      {{ form.submit() }}
+      </form>
+
     </section>
   </div>
 </div>

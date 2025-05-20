@@ -1,5 +1,5 @@
 // Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   //----------------------variables---------------------//
   const editProfile = document.getElementById('edit-profile');
   const modalEditContainer = document.getElementById('modal-edit-container');
@@ -8,22 +8,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const submitButton = document.getElementById('submit-edit-button');
 
   //variables of the input function
-  //username
-  const userNameDisplay = document.getElementById('user-name-display');
-  const editNameInput = document.getElementById('edit-name');
 
+  // //userEmail
+  // const editEmailInput = document.getElementById('edit-email')
+  // const userEmaildisplay = document.getElementById('user-email-display');
 
-  //userEmail
-  const editEmailInput = document.getElementById('edit-email')
-  const userEmaildisplay = document.getElementById('user-email-display');
+  // //username
+  // const editUsernameInput = document.getElementById('edit-username');
+  // const usernameDisplay = document.getElementById('username-display');
 
-  //username
-  const editUsernameInput = document.getElementById('edit-username');
-  const usernameDisplay = document.getElementById('username-display');
+  // //firstname
+  // const editfirstNameInput = document.getElementById('edit-firstname');
+  // const firstNameDisplay = document.getElementById('firstname-display');
 
-  //password
-  const editPasswordInput = document.getElementById('edit-password');
-  const passwordDisplay = document.getElementById('password-display');
+  // //lastname
+  // const editlastnameInput = document.getElementById('edit-lastname');
+  // const lastnameDisplay = document.getElementById('lastname-display');
+
+  // //password
+  // const editPasswordInput = document.getElementById('edit-password');
+  // const passwordDisplay = document.getElementById('password-display');
 
   //user Role
   const userRoleDisplay = document.getElementById('user-role');
@@ -46,12 +50,13 @@ document.addEventListener('DOMContentLoaded', function() {
   //-------------------------functions----------------------------//
   function showEditModal() {
     // Set the current name in the input field when opening the modal
-    editNameInput.value = userNameDisplay.textContent;
-    
-    editEmailInput.value = userEmaildisplay.textContent;
-    editUsernameInput.value = usernameDisplay.textContent;
-    editPasswordInput.value = passwordDisplay.textContent;
-    
+
+    // editEmailInput.value = userEmaildisplay.textContent;
+    // editUsernameInput.value = usernameDisplay.textContent;
+    // editPasswordInput.value = passwordDisplay.textContent;
+    // editfirstNameInput.value = firstNameDisplay.textContent;
+    // editlastnameInput.value = lastnameDisplay.textContent;
+
     modalEditContainer.style.display = 'flex';
   }
 
@@ -72,28 +77,33 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Handle form submission
-  submitButton.addEventListener('click', function() {
+  submitButton.addEventListener('click', function () {
     // Update the displayed name with the new value
-    const newName = editNameInput.value.trim();
-    if (newName) {
-      userNameDisplay.textContent = newName;
-    }
 
+    // const newEmail = editEmailInput.value.trim();
+    // if (newEmail) {
+    //   userEmaildisplay.textContent = newEmail;
+    // }
 
-    const newEmail = editEmailInput.value.trim();
-    if (newEmail) {
-      userEmaildisplay.textContent = newEmail;
-    }
+    // const newUsername = editUsernameInput.value.trim();
+    // if (newUsername) {
+    //   usernameDisplay.textContent = newUsername;
+    // }
 
-    const newUsername = editUsernameInput.value.trim();
-    if (newUsername) {
-      usernameDisplay.textContent = newUsername;
-    }
+    // const newPassword = editPasswordInput.value.trim();
+    // if (newPassword) {
+    //   passwordDisplay.textContent = newPassword;
+    // }
 
-    const newPassword = editPasswordInput.value.trim();
-    if (newPassword) {
-      passwordDisplay.textContent = newPassword;
-    }
+    // const newfirstname = editfirstNameInput.value.trim();
+    // if (newfirstname) {
+    //   firstNameDisplay.textContent = newfirstname;
+    // }
+
+    // const newlatname = editlastnameInput.value.trim();
+    // if (newlatname) {
+    //   lastnameDisplay.textContent = newlatname;
+    // }
     hideEditModal();
   });
 });
