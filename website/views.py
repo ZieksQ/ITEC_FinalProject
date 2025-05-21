@@ -77,10 +77,6 @@ def search():
 def format_price(price):
     return f"₱{float(price):,.2f}"
 
-
-
-
-
 @views.route('/Terms of Service')
 def tos():
     return render_template('tos.html')
