@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>search</title>
+<title>Search</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='src/inventory-style.css') }}">
 {% endblock %}
 
@@ -83,7 +83,7 @@
                         <td>{{ result.product_name }}</td>
                         <td>{{ format_price(result.price) }}</td>
                         <td>{{ result.stock }}</td>
-                        <td>{{ result.manufacturer }}</td>
+                        <td>{{ result.manufacturer.upper() }}</td>
                         <td>{{ result.category.upper() }}</td>
                         <td>{{ result.date_created.date() }}</td>
                         <td>{{ result.date_updated.date() }}</td>

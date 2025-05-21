@@ -59,7 +59,7 @@
 
 ###
 
-<p align="left">Auvryy - Frontend</p>
+<p align="left">Auvryy - Main Frontend</p>
 
 ###
 
