@@ -68,7 +68,6 @@ def search():
             ).order_by(Product.id.asc()).limit(100).all()
         if not searches:
             searches = Product.query.all()
-            flash("No product found!", category='error')
     else:
         flash('No product found!', category='error')
         searches = Product.query.all()
