@@ -67,6 +67,7 @@ def search():
             Product.product_name.ilike(f'%{querry}%') | Product.manufacturer.ilike(f'%{querry}%') | Product.category.ilike(f'%{querry}%')
             ).order_by(Product.id.asc()).limit(100).all()
         if not searches:
+            searches = Product.query.all()
             flash("No product found!", category='error')
     else:
         flash('No product found!', category='error')
