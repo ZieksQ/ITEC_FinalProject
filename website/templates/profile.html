@@ -13,10 +13,10 @@
         <img src="{{ image_file }}" class="profile_pic_profiles" alt="users profile  ">
       </div>
       <div class="input-container">
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form class="upload-picture" action="" method="POST" enctype="multipart/form-data">
+          {{ form_picture.picture() }}
           {{ form_picture.hidden_tag() }}
           {{ form_picture.picture.label() }}
-          {{ form_picture.picture() }}
           {% if form_picture.picture.errors %}
           {% for error in form_picture.picture.errors %}
           <div class="form_error">{{ error }}</div>
@@ -57,11 +57,11 @@
             <p>{{ current_user.username }}</p>
           </div>
           <div class="info-container">
-            <p>Password: (password without bcrypt/hashing)</p>
+            <p>Password: </p>
             <p>{{ current_user.display_password }}</p>
           </div>
           <div class="info-container">
-            <p>Password: (password with bcrypt/hashing)</p>
+            <p>Password (HASH):  </p>
             <p>{{ current_user.password }}</p>
           </div>
         </div>
@@ -134,9 +134,8 @@
 
     </section>
     <section class="modal-buttons">
-      <button id="cancel-edit-button">Cancel</button>
-      {{ form.submit() }}
-      </form>
+      <button type="button" id="cancel-edit-button">Cancel</button>
+      <button>{{ form.submit() }}</button>
 
     </section>
   </div>

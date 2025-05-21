@@ -28,34 +28,6 @@
   row-gap: 10px;
 }
 
-.picture-container {
-  background-color: var(--secondary-button-color);
-  width: 320px;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 50px;
-}
-
-.picture-container svg {
-  width: 80%;
-  height: 80%;
-  fill: var(--primary-button-color);
-  color: var(--primary-button-color)
-}
-
-#upload-picture-button {
-  background-color: var(--secondary-button-color);
-  color: black;
-  font-weight: 500;
-  padding: 10px 30px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-
-}
 
 .main-top-right {
   display: flex;
@@ -169,22 +141,7 @@
   border-top: 2px solid var(--secondary-color);
 }
 
-.role-submit button {
-  padding: 12px 30px;
-  background-color: var(--primary-button-color);
-  color: var(--white-color);
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s;
-}
 
-.role-submit button:hover {
-  background-color: var(--accent-color);
-  opacity: 0.9;
-}
 
 .radio-container {
   display: flex;
@@ -290,7 +247,7 @@
 }
 
 #edit-profile {
-  background-color: var(--primary-button-color);
+  background-color: var(--primary-color);
   color: var(--white-color);
 }
 
@@ -440,3 +397,51 @@
   border-radius: 50%;
   object-fit: cover;
 }
+
+.upload-picture {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.upload-picture input:last-child {
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  border: 3px solid var(--primary-color);
+  transition: all 0.15s;
+}
+
+.upload-picture input:last-child:hover, .upload-picture label:hover {
+  opacity: 0.8;
+}
+
+.upload-picture label {
+  padding: 15px 15px;
+  border: 3px solid var(--secondary-color);
+  background-color: var(--secondary-button-color);
+  color: var(--primary-button-color);
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+
+.upload-picture input[type="file"] {
+  padding: 0;
+  border: none;
+  display: flex;
+  width: 20ch;
+  word-wrap: break-word;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-picture input[type="file"]::-webkit-file-upload-button {
+  display: none;
+}
+
