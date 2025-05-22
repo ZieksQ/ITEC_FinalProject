@@ -113,7 +113,7 @@ body {
   align-items: center;
 }
 
-#edit-modal {
+#edit-modal, #search-edit-modal {
   position: absolute;
   top: 50%;
   left: 50%;
