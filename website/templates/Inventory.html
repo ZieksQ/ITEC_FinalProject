@@ -110,7 +110,7 @@
               <td>{{ producto.date_updated.date() }}</td>
               <td class="action-cell">
                 <div class="action-buttons">
-                  <a href="{{ url_for('delete_update_product.delete', id=producto.id) }}" class="delete-btn">
+                  <a href="{{ url_for('delete_update_product.delete', id=producto.id) }}" onclick="return confirm('Are you sure you want to do this?')"class="delete-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                       stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round"
