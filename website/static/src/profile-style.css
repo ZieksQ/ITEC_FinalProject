@@ -414,7 +414,8 @@
   transition: all 0.15s;
 }
 
-.upload-picture input:last-child:hover, .upload-picture label:hover {
+.upload-picture input:last-child:hover,
+.upload-picture label:hover {
   opacity: 0.8;
 }
 
@@ -445,3 +446,19 @@
   display: none;
 }
 
+.update_acc {
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  border: 3px solid var(--primary-color);
+  transition: all 0.15s;
+  border-radius: 8px;
+  width: 140px;
+  height: 45px;
+}
+
+.update_acc:hover {
+  background-color: var(--secondary-button-color);
+  color: var(--white-color);
+}

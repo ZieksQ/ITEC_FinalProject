@@ -170,5 +170,5 @@ class UpdateForm(FlaskForm):
     submit = SubmitField(label='Update Account')
 
 class ProfilePictureForm(FlaskForm):
-    picture = FileField(label="Update Profile Picture", validators=[FileAllowed(['jpg', 'png'])])
-    submit = SubmitField(label='Upload Picture')
+    picture = FileField(label="Upload Profile Picture", validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField(label='Update Profile Picture')
