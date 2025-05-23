@@ -21,4 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
       isVisible = true;
     }
   }
+
+  setTimeout(function () {
+        const flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach(function (message) {
+          message.style.display = 'none';
+        });
+      }, 4000); // 4000ms = 4 seconds
 });

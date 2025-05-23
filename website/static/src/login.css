@@ -70,14 +70,14 @@ body {
   background: white;
   width: min(350px, 50vw);
   height: auto;
-  margin: -205px auto 30px auto; 
+  margin: -205px auto 30px auto;
   border-radius: 12px;
   padding: 25px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
   position: relative;
   z-index: 5;
-  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
 .login-box h2 {
@@ -197,7 +197,7 @@ input[type="submit"]:hover {
   z-index: 10;
   text-align: start;
   backdrop-filter: blur(10px);
-  box-shadow: 0 15px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.15);
 }
 
 .signup-box h2 {
@@ -213,9 +213,7 @@ input[type="submit"]:hover {
   margin-bottom: 15px;
 }
 
-.signup-box input {
-  
-}
+.signup-box input {}
 
 .signup-box input:focus {
   border-color: var(--primary-button-color)
@@ -246,7 +244,7 @@ input[type="submit"]:hover {
   transition: all 0.15s;
 }
 
-.signup-box input:focus{
+.signup-box input:focus {
   border-color: var(--primary-color);
 }
 
@@ -304,6 +302,22 @@ input[type="submit"]:hover {
   color: #4a00e0;
   font-weight: bold;
   text-decoration: none;
+}
+
+.flash-message {
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 25px 45px;
+  border-radius: 5px;
+  background-color: var(--background-color);
+  font-weight: bold;
+  /* default success */
+  color: #ffffff;
+  z-index: 5000;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+  background-color: #4a00e0;
 }
 
 .flash-message.error {
